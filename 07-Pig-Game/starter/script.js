@@ -20,8 +20,7 @@ const currentScore1 = document.getElementById('current--1');
 let scores,activeValue,currentScore,playing;
 const name0 = document.querySelector('#name--0');
 const name1 = document.querySelector('#name--1');
-name0.textContent = prompt('Player 1 name');
-name1.textContent = prompt('Player 2 name');
+
 const init = function(){
   playing = true;
   scores = [0, 0];
