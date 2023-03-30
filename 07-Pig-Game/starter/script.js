@@ -25,6 +25,7 @@ const init = function(){
   playing = true;
   scores = [0, 0];
   currentScore = 0;
+
   document.getElementById(`current--1`).textContent = currentScore;
   document.getElementById(`current--0`).textContent = currentScore;
   player[0].classList.remove('player--winner');
@@ -32,6 +33,7 @@ const init = function(){
   for (let i = 0; i < player.length; i++) {
     score[i].textContent = scores[i];
   }
+  
   activeValue = 0;
   player[0].classList.add('player--active');
   score0El.textContent = 0;
