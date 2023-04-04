@@ -1,6 +1,10 @@
 'use strict';
 
-function calcAge(birthYear) {
+
+/*------------------------ Scoping In Practice -----------------------*/ 
+
+
+/*  function calcAge(birthYear) {
   const age = 2037 - birthYear;
 
   function printAge() {
@@ -40,4 +44,7 @@ const firstName = `Jonas`;
 calcAge(1991);
 
 // console.log(printAge()); Reference Error
-// console.log(age); Reference Error
+// console.log(age); Reference Error */ 
+
+
+
