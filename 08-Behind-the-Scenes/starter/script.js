@@ -44,7 +44,13 @@ calcAge(1991);
 // console.log(printAge()); Reference Error
 // console.log(age); Reference Error */
 
-// Hoisting with Variables
+
+
+
+/* -------------------------- Hoisting------------------ */
+
+/*
+// Hoisting with variables
 console.log(me);
 // console.log(job);
 // console.log(year);
@@ -86,3 +92,4 @@ const z = 3;
 console.log(x ===  window.x);
 console.log(y === window.y);
 console.log(z === window.z);
+*/
