@@ -44,9 +44,6 @@ calcAge(1991);
 // console.log(printAge()); Reference Error
 // console.log(age); Reference Error */
 
-
-
-
 /* -------------------------- Hoisting------------------ */
 
 /*
@@ -57,7 +54,7 @@ console.log(me);
 // console.log(divine);
 
 var me = `Divine`;
-let job = `😭😭`;
+let job = `A good Job`;
 const year = 2007;
 
 // Hoisting with functions
@@ -93,3 +90,42 @@ console.log(x ===  window.x);
 console.log(y === window.y);
 console.log(z === window.z);
 */
+
+/*-------------------------The This Keyword ------------------------*/
+
+/* console.log(this);
+
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+
+calcAge(2000);
+
+const calcAgeArrow = birthYear => {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+
+calcAgeArrow(2023);
+
+const jonas = {
+  year: 1991,
+  calcAge : function(){
+    console.log(this);
+    console.log(2037 - this.year);
+  }
+};
+
+jonas.calcAge();
+
+const matilda = {
+  year:2017
+}
+
+matilda.calcAge = jonas.calcAge;
+matilda.calcAge(1991)
+
+const f = jonas.calcAge;
+
+f() */
