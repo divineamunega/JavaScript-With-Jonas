@@ -129,3 +129,51 @@ matilda.calcAge(1991)
 const f = jonas.calcAge;
 
 f() */
+
+
+/** ------------------Regular Functions Vs Arrow Functions-------------------  */
+
+
+var firstName = `Matilda`;
+
+const jonas = {
+  year: 1991,
+  firstName:`Jonas`,
+
+  calcAge: function () {
+    console.log(2037 - this.year);
+
+    // const self = this; // Self or that
+    // const isMillenial = function(){
+    //   console.log(self)
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    // }
+
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+
+    isMillenial();
+  },
+
+  greet: function() {  console.log(`Hey ${this.firstName}`)},
+  
+};
+
+jonas.greet();
+jonas.calcAge();
+
+const addExpr = function(a,b){
+  console.log(arguments);
+  return a + b;
+}
+
+var addArrow = (a,b) => {
+  console.log(arguments)
+  return a + b;
+};
+addExpr(2, 5, 5)
+
+
+// When we try to accesss a property that does'nt exist from an object it returns undefined.
