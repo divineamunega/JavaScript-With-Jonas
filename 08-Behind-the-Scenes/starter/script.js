@@ -134,7 +134,7 @@ f() */
 /** ------------------Regular Functions Vs Arrow Functions-------------------  */
 
 
-var firstName = `Matilda`;
+/*  var firstName = `Matilda`;
 
 const jonas = {
   year: 1991,
@@ -176,4 +176,4 @@ var addArrow = (a,b) => {
 addExpr(2, 5, 5)
 
 
-// When we try to accesss a property that does'nt exist from an object it returns undefined.
+// When we try to accesss a property that does'nt exist from an object it returns undefined. */
