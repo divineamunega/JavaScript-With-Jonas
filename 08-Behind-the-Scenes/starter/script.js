@@ -181,7 +181,7 @@ addExpr(2, 5, 5)
 
 /* -------------- Primitives vs Objects------------------------ */
 
-let age = 30;
+/* let age = 30;
 let oldAge = age;
 age = 31;
 
@@ -197,4 +197,4 @@ const friend = me;
 friend.age = 27;
 
 console.log(`Freind` , friend);
-console.log(`Me` , me);
+console.log(`Me` , me); */
