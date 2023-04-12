@@ -130,9 +130,7 @@ const f = jonas.calcAge;
 
 f() */
 
-
 /** ------------------Regular Functions Vs Arrow Functions-------------------  */
-
 
 /*  var firstName = `Matilda`;
 
@@ -178,7 +176,6 @@ addExpr(2, 5, 5)
 
 // When we try to accesss a property that does'nt exist from an object it returns undefined. */
 
-
 /* -------------- Primitives vs Objects------------------------ */
 
 /* let age = 30;
@@ -196,5 +193,45 @@ const me = {
 const friend = me;
 friend.age = 27;
 
-console.log(`Freind` , friend);
+console.log(`Friend` , friend);
 console.log(`Me` , me); */
+
+
+// Primitive Types
+let lastName = `Williams`;
+let oldLastName = lastName;
+lastName = `Davis`;
+console.log(lastName, oldLastName);
+
+// Reference Types
+const jessica = {
+  firstName: `Jessica`,
+  lastName: `Williams`,
+  age: 27,
+};
+
+const marriedJesssica = jessica;
+marriedJesssica.lastName = `Davis`;
+
+console.log(`Before Marriage:`,jessica);
+console.log(`After Marriage:`,marriedJesssica);
+
+const jessica2 = {
+  firstName: `Jessica`,
+  lastName: `Williams`,
+  age: 27,
+  family: [`Alice`,`Bob`]
+};
+
+const jessicaCopy  = Object.assign({},jessica2);
+jessicaCopy.lastName = `Davis`;
+
+// console.log(`Before Marriage:`, jessica2);
+// console.log(`After Marriage:`, jessicaCopy);
+
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+
+
+console.log(`Before Marriage:`, jessica2);
+console.log(`After Marriage:`, jessicaCopy);
