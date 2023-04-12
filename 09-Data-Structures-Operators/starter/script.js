@@ -31,12 +31,77 @@ const restaurant = {
     },
   },
 
-  orderDelivery: function ({ starterIndex = 1, mainIndex = 0, time =`20:00`, address }) {
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = `20:00`,
+    address,
+  }) {
     console.log(
       `Order Recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delevered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your deleciuos pasta with ${ing1}, ${ing2} and ${ing3}`);
+  },
 };
+
+
+
+/** -------------------- The Spread Operator   -------------------------- */
+
+
+const arr = [7,8,9];
+const badNewArr = [1,2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
+
+const newArr = [1,2, ...arr];
+console.log(newArr);
+
+console.log(...newArr);
+const newMenu = [...restaurant.mainMenu, `Ghacci`];
+console.log(newMenu);
+
+
+
+// Copy Arrays
+
+const mainMenuCopy = [...restaurant.mainMenu];
+
+//Join 2 Arrays
+
+const menu = [...restaurant.mainMenu ,...restaurant.starterMenu];
+console.log(menu);
+
+
+// Iterables are arrays, strings, maps sets, NOT objects. 
+
+const str = `Jonas`;
+const letters = [...str, '', 'S.'];
+console.log(letters);
+
+console.log(...str);
+
+
+// Real world Example
+// const ingredients = [
+//   prompt(`Let's Make Pasta! Ingredient 1!`),
+//   prompt(`Ingredient 2`),
+//   prompt(`Ingredient 3`),
+// ];
+
+// restaurant.orderPasta(...ingredients);
+
+// Objects
+const newResturant = {...restaurant, foundedIn:1998, founder: `Divine`};
+console.log(newResturant);
+
+const restaurantCopy = {...restaurant};
+restaurantCopy.name = `Ristorato Rom`;
+console.log(restaurant);
+console.log(restaurantCopy);
+
 
 
 
