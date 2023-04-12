@@ -30,6 +30,11 @@ const restaurant = {
   },
 };
 
+
+
+
+/** ///////////////// Destructuring Arrays*/
+/*
 const arr = [2,3,4];
 const a = arr[0];
 const b = arr[1];
@@ -49,7 +54,7 @@ console.log(arr);
 // console.log(main,secondary); 
 // [main, secondary] = [secondary , main];
 
-// console.log(restaurant.order(2,0));
+// console.log(restaurant.order(2,0 ));
 const [stater, main] =  restaurant.order(2,0);
 console.log(stater,main);
 
@@ -67,3 +72,4 @@ console.log(i,j,k);
 const [p=1,q=1,r=1] = [8,9];
 
 console.log(p,q,r);
+*/
