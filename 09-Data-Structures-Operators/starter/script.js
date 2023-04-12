@@ -11,7 +11,9 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
+  order: function(stareterIndex,mainIndex){
+    return [this.starterMenu[stareterIndex], this.mainMenu[mainIndex]];
+  },
   openingHours: {
     thu: {
       open: 12,
@@ -27,3 +29,41 @@ const restaurant = {
     },
   },
 };
+
+const arr = [2,3,4];
+const a = arr[0];
+const b = arr[1];
+const c = arr[2];
+
+const [x , ,z] = arr;
+console.log(x,z);
+console.log(arr);
+
+// let [main, secondary]  = restaurant.categories;
+
+
+// const temp = main;
+// main = secondary;
+// secondary = temp;
+// console.log(main,secondary);
+// console.log(main,secondary); 
+// [main, secondary] = [secondary , main];
+
+// console.log(restaurant.order(2,0));
+const [stater, main] =  restaurant.order(2,0);
+console.log(stater,main);
+
+
+// Nested destructuring
+const neseted = [2,4,   [5,6] ];
+// const [i, , j] = neseted;
+// console.log(i,j);
+
+const [i, ,[j,k]] = neseted;
+console.log(i,j,k);
+
+// default values
+
+const [p=1,q=1,r=1] = [8,9];
+
+console.log(p,q,r);
