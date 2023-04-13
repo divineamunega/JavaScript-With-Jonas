@@ -49,9 +49,11 @@ const restaurant = {
 
 
 
+
+
 /** -------------------- The Spread Operator   -------------------------- */
 
-
+/*
 const arr = [7,8,9];
 const badNewArr = [1,2, arr[0], arr[1], arr[2]];
 console.log(badNewArr);
@@ -62,6 +64,7 @@ console.log(newArr);
 console.log(...newArr);
 const newMenu = [...restaurant.mainMenu, `Ghacci`];
 console.log(newMenu);
+
 
 
 
@@ -101,6 +104,11 @@ const restaurantCopy = {...restaurant};
 restaurantCopy.name = `Ristorato Rom`;
 console.log(restaurant);
 console.log(restaurantCopy);
+
+*/
+
+
+
 
 
 
