@@ -53,6 +53,7 @@ const restaurant = {
   }
 };
 /**--------------The Nullish Coalesing Operator--------------------- */
+/*
 restaurant.numGuests = 0;
 const guests = restaurant.numGuests ? restaurant.numGuests : 10;
 console.log(guests);
@@ -60,7 +61,7 @@ console.log(guests);
 // nullish values are null and undefined
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect); 
-
+*/
 
 /**---------------- Short Circuiting ------------------------------ */
 
