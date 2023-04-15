@@ -95,6 +95,17 @@ const game = {
   },
 };
 
+/** ---------Looping Arrays the for of Loop-------------- */
+/*
+const menu = [...restaurant.starterMenu,...restaurant.mainMenu];
+
+for(const item of menu) console.log(item);
+
+for (const [i,el] of menu.entries()) {
+  console.log(`${i + 1}:${el}`);
+}
+*/
+
 /*  ------------------Coding Challenge 1 -----------------*/
 /*
 const [players1,players2] = game.players;
