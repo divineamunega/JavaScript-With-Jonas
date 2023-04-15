@@ -54,7 +54,7 @@ const restaurant = {
   },
 };
 
-console.log(restaurant);
+
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -95,6 +95,32 @@ const game = {
     team2: 6.5,
   },
 };
+
+/**---------------Optional Chaining------------------ */
+/*if (restaurant.openingHours && restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+// console.log(restaurant.openingHours.mon.open);
+
+//With Optional Chaining
+console.log(restaurant.openingHours.mon?.open);
+// Example
+const days = [`mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`];
+
+for(const day of days){
+  console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? `closed`;
+  console.log(`On ${day} we open at ${open}`);
+}
+
+// Methods 
+console.log(restaurant.orderRisoto?.(0,1) ?? `Method does not exist`);
+
+// Arrays
+const users =  [{name:`Jonas`, email:`hellojonas.io`,}];
+
+console.log(users[0  ]?.name ?? `User array Empty`);
+*/
 
 /** ---------Looping Arrays the for of Loop-------------- */
 /*
