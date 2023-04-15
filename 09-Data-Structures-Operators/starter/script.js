@@ -46,12 +46,50 @@ const restaurant = {
     console.log(
       `Here is your deleciuos pasta with ${ing1}, ${ing2} and ${ing3}`
     );
-
   },
-  orderPizza : function(mainIngredient,...otherIngredient){
-    console.log(`You ordered a pizza which had a main ingredeint of ${mainIngredient} and other ingredeint of ${otherIngredient}`);
-  }
+  orderPizza: function (mainIngredient, ...otherIngredient) {
+    console.log(
+      `You ordered a pizza which had a main ingredeint of ${mainIngredient} and other ingredeint of ${otherIngredient}`
+    );
+  },
 };
+
+/*----------Logical Assignment Operators------------------*/
+const rest1 = {
+  name: `Capri`,
+  numGuests: 20,
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: `Capri`,
+  owner: `Glovans Rossi`,
+};
+
+// The Or assignment Operator
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// rest2.numGuests ||= 10;
+// rest1.numGuests ||= 10;
+
+
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10; 
+
+
+// The AND assingment operator
+
+// rest1.owner = rest2.owner && `<ANONYMOUS>`;
+// rest2.owner = rest1.owner && `<ANONYMOUS>`;
+
+rest1.owner &&=  `<ANONYMOUS>`;
+rest2.owner &&=  `<ANONYMOUS>`;
+
+
+console.log(rest1);
+console.log(rest2);
+
 /**--------------The Nullish Coalesing Operator--------------------- */
 /*
 restaurant.numGuests = 0;
@@ -87,7 +125,6 @@ console.log(7 && `Jonas`);
 
 restaurant.orderPizza && restaurant.orderPizza(`mushroom`,`spinach `)
 */
-
 
 /** ---------------The Rest Operator------------------------------ */
 /*
