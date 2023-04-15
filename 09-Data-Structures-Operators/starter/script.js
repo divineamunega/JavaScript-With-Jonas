@@ -54,8 +54,6 @@ const restaurant = {
   },
 };
 
-// Coding Challenge 1
-
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -96,6 +94,9 @@ const game = {
     team2: 6.5,
   },
 };
+
+/*  ------------------Coding Challenge 1 -----------------*/
+/*
 const [players1,players2] = game.players;
 
 const [gk, ...fieldPlayers] = players1;
@@ -117,7 +118,7 @@ const printGoals =  function(...players){
 
 team1 < team2 && console.log(`Team 1 is more likely to win`);
 team1 > team2 && console.log(`Team 2 is more likely to win`);
-
+*/
 /*----------Logical Assignment Operators------------------*/
 /*
 const rest1 = {
