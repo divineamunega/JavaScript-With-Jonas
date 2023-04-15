@@ -43,15 +43,57 @@ const restaurant = {
   },
 
   orderPasta: function (ing1, ing2, ing3) {
-    console.log(`Here is your deleciuos pasta with ${ing1}, ${ing2} and ${ing3}`);
+    console.log(
+      `Here is your deleciuos pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+
   },
+  orderPizza : function(mainIngredient,...otherIngredient){
+    console.log(`You ordered a pizza which had a main ingredeint of ${mainIngredient} and other ingredeint of ${otherIngredient}`);
+  }
 };
 
+/** ---------------The Rest Operator------------------------------ */
 
+// (1) Destructuring
+// The rest operator is used to pack elements into an array
 
+// Spread becauuse of on the RHS of the = (assingment operator)
+const arr = [1, 2, ...[3, 4, 4]];
 
+//REST because of left of the = (assignement operator)
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+const [pizza, , risoto, ...otherFoods] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+
+console.log(pizza, risoto, otherFoods);
+
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+// (2) Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  return sum;
+};
+
+add(2, 3, 4, 5, 5);
+add(6, 8, 7, 6);
+
+const x = [23,5,7];
+add(...x);
+
+restaurant.orderPizza(`mushroom`,`onion`,`olives`,`spinach`);
+restaurant.orderPizza(`Mushroom`);
 
 /** -------------------- The Spread Operator   -------------------------- */
+// The spread operator s to unpack an array
 
 /*
 const arr = [7,8,9];
@@ -106,13 +148,6 @@ console.log(restaurant);
 console.log(restaurantCopy);
 
 */
-
-
-
-
-
-
-
 
 /* -------- Destructuring Objects ---------*/
 /*
