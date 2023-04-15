@@ -53,6 +53,32 @@ const restaurant = {
   }
 };
 
+/**---------------- Short Circuiting ------------------------------ */
+
+
+console.log(`---------OR----------`);
+//  Logical operators can use ANY data type, Return ANY datatype, and they perform short Circuiting
+console.log(3 || `Jonas`);
+console.log(`` || `Jonas`);
+console.log(true || 0);
+console.log(undefined || null);
+
+restaurant.numGuests = 23;
+const guests1  = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log(`---------AND---------`);
+console.log(0 && `Jonas`);
+console.log(7 && `Jonas`);
+
+restaurant.orderPizza && restaurant.orderPizza(`mushroom`,`spinach `)
+
+
+
 /** ---------------The Rest Operator------------------------------ */
 /*
 // (1) Destructuring
