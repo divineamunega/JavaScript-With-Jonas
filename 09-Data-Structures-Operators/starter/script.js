@@ -52,10 +52,19 @@ const restaurant = {
     console.log(`You ordered a pizza which had a main ingredeint of ${mainIngredient} and other ingredeint of ${otherIngredient}`);
   }
 };
+/**--------------The Nullish Coalesing Operator--------------------- */
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests);
+
+// nullish values are null and undefined
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect); 
+
 
 /**---------------- Short Circuiting ------------------------------ */
 
-
+/*
 console.log(`---------OR----------`);
 //  Logical operators can use ANY data type, Return ANY datatype, and they perform short Circuiting
 console.log(3 || `Jonas`);
@@ -76,7 +85,7 @@ console.log(0 && `Jonas`);
 console.log(7 && `Jonas`);
 
 restaurant.orderPizza && restaurant.orderPizza(`mushroom`,`spinach `)
-
+*/
 
 
 /** ---------------The Rest Operator------------------------------ */
