@@ -54,7 +54,7 @@ const restaurant = {
 };
 
 /** ---------------The Rest Operator------------------------------ */
-
+/*
 // (1) Destructuring
 // The rest operator is used to pack elements into an array
 
@@ -91,7 +91,7 @@ add(...x);
 
 restaurant.orderPizza(`mushroom`,`onion`,`olives`,`spinach`);
 restaurant.orderPizza(`Mushroom`);
-
+*/
 /** -------------------- The Spread Operator   -------------------------- */
 // The spread operator s to unpack an array
 
