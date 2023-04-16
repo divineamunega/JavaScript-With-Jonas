@@ -95,6 +95,27 @@ const game = {
   },
 };
 
+/**------------- Coding Chalenge 2------------------- */
+for(const [goalNum, player] of game.scored.entries()) console.log(`Goal ${goalNum + 1}: ${player}`); // Excercise 1
+
+const oddObject = Object.entries(game.odds);
+const odds = Object.values(game.odds);
+let counter = 0;
+for(const odd of odds) {
+  counter += odd;
+}
+const average = counter/odds.length;
+console.log(average);  // Exercise 2
+
+
+for(const [team,odd] of oddObject){
+game[team] && console.log(`Odd of Victory of ${game[team]}: ${odd}`);
+game[team] ?? console.log(`Odd of draw: ${odd}`);
+} // Exercise 3
+
+
+
+
 /**-------------Looping Objects--------------------- */
 /*
 // property NAMES
