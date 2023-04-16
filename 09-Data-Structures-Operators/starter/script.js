@@ -96,26 +96,31 @@ const game = {
 };
 
 /**------------- Coding Chalenge 2------------------- */
-for(const [goalNum, player] of game.scored.entries()) console.log(`Goal ${goalNum + 1}: ${player}`); // Excercise 1
+for (const [goalNum, player] of game.scored.entries())
+  console.log(`Goal ${goalNum + 1}: ${player}`); // Excercise 1
 
 const oddObject = Object.entries(game.odds);
 const odds = Object.values(game.odds);
 let counter = 0;
-for(const odd of odds) {
+for (const odd of odds) {
   counter += odd;
 }
-const average = counter/odds.length;
-console.log(average);  // Exercise 2
+const average = counter / odds.length;
+console.log(average); // Exercise 2
 
-console.log()
-for(const [team,odd] of oddObject){
-game[team] && console.log(`Odd of Victory of ${game[team]}: ${odd}`);
-game[team] ?? console.log(`Odd of draw: ${odd}`);
+console.log();
+for (const [team, odd] of oddObject) {
+  game[team] && console.log(`Odd of Victory of ${game[team]}: ${odd}`);
+  game[team] ?? console.log(`Odd of draw: ${odd}`);
 } // Exercise 3
 
-
-
-
+// Bonus
+const scored = {};
+for (const players of game.scored) {
+  console.log(players);
+  scored[players] ? (scored[players] ++) : (scored[players] =1);
+}
+console.log(scored);
 /**-------------Looping Objects--------------------- */
 /*
 // property NAMES
