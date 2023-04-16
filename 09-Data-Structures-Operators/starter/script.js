@@ -107,7 +107,7 @@ for(const odd of odds) {
 const average = counter/odds.length;
 console.log(average);  // Exercise 2
 
-
+console.log()
 for(const [team,odd] of oddObject){
 game[team] && console.log(`Odd of Victory of ${game[team]}: ${odd}`);
 game[team] ?? console.log(`Odd of draw: ${odd}`);
