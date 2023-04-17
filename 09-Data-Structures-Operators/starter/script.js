@@ -118,9 +118,10 @@ for (const [team, odd] of oddObject) {
 const scored = {};
 for (const players of game.scored) {
   console.log(players);
-  scored[players] ? (scored[players] ++) : (scored[players] =1);
+  scored[players] ? scored[players]++ : (scored[players] = 1);
 }
 console.log(scored);
+
 /**-------------Looping Objects--------------------- */
 /*
 // property NAMES
