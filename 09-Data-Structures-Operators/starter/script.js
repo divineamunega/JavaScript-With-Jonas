@@ -96,6 +96,7 @@ const game = {
 };
 
 /**------------- Coding Chalenge 2------------------- */
+/*
 for (const [goalNum, player] of game.scored.entries())
   console.log(`Goal ${goalNum + 1}: ${player}`); // Excercise 1
 
@@ -120,7 +121,8 @@ for (const players of game.scored) {
   console.log(players);
   scored[players] ? scored[players]++ : (scored[players] = 1);
 }
-console.log(scored);
+console.log(scored); 
+*/
 
 /**-------------Looping Objects--------------------- */
 /*
