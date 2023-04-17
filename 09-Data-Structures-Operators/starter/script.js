@@ -95,6 +95,45 @@ const game = {
   },
 };
 
+/** --------------------- Sets -------------------------- */
+
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Resoto',
+  'Pizza',
+  'Pasta',
+]);
+
+console.log(orderSet);
+
+console.log(new Set('Jonas'));
+
+console.log(orderSet.size);
+console.log(orderSet.has('Pizza'));
+console.log(orderSet.has('Bread'));
+
+orderSet.add('Garlic Bread');
+orderSet.add('Garlic Bread');
+orderSet.delete('Re soto');
+
+// orderSet.clear();
+console.log(orderSet);
+
+for (const order of orderSet) console.log(order);
+
+// Example 
+
+const staff = [`Waiter`,`Chef`, `Waiter`, `Manager`, `Chef`, `Waiter`];
+
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+
+console.log(new Set(staff).size);
+
+console.log(new Set ('jonasschmedtmann').size);
+
 /**------------- Coding Chalenge 2------------------- */
 /*
 for (const [goalNum, player] of game.scored.entries())
