@@ -109,6 +109,40 @@ const gameEvents = new Map([
   [92, '🔶 Yellow card'],
 ]);
 
+/** ---------- Strings---------------------- */
+const airline = `TAP Air Portugal`;
+const plane = `A320`;
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log(`B737`[1]);
+
+console.log(airline.length);
+console.log(`B737`.length);
+
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf(`Portugal`));
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are the middle seats
+  const s = seat.slice(-1);
+  s === `B` || s === `C`
+    ? console.log(`YOu Got the middle Seat 🥱😪`)
+    : console.log(`You got Lucky 😁 `);
+};
+
+checkMiddleSeat(`11B`);
+checkMiddleSeat(`23C`);
+checkMiddleSeat(`3E`);
 /*------------- Coding Challenge 3----------------------------------*/
 /*
 
@@ -136,7 +170,6 @@ for(const [time, ev] of gameEvents){
   time > 45 && console.log(`[SECOND HALF] ${time}: ${ev}`);
 }
  */
-
 
 /** --------------- Maps Iteration */
 // console.log(gameTrack.has('GOAL ⚽'));
