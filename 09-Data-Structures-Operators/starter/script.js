@@ -110,12 +110,7 @@ const gameEvents = new Map([
 ]);
 
 /*------------- Coding Challenge 3----------------------------------*/
-
-// for(const event of gameEvents.values()){
-
-// }
-
-/** --------------- Maps Iteration */
+/*
 
 /// 1.
 const events = [...new Set(gameEvents.values())];
@@ -140,6 +135,10 @@ for(const [time, ev] of gameEvents){
   time < 45 && console.log(`[FIRST HALF] ${time}: ${ev}`);
   time > 45 && console.log(`[SECOND HALF] ${time}: ${ev}`);
 }
+ */
+
+
+/** --------------- Maps Iteration */
 // console.log(gameTrack.has('GOAL ⚽'));
 
 /// 2.
