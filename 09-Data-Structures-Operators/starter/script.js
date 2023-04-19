@@ -109,8 +109,9 @@ const gameEvents = new Map([
   [92, '🔶 Yellow card'],
 ]);
 
-/** ---------- Strings---------------------- */
-const airline = `TAP Air Portugal`;
+/** ---------- Working With Strings Part 2---------------------- */
+/** ---------- Working With Strings Part 1---------------------- */
+/*const airline = `TAP Air Portugal`;
 const plane = `A320`;
 console.log(plane[0]);
 console.log(plane[1]);
@@ -143,6 +144,8 @@ const checkMiddleSeat = function (seat) {
 checkMiddleSeat(`11B`);
 checkMiddleSeat(`23C`);
 checkMiddleSeat(`3E`);
+
+*/
 /*------------- Coding Challenge 3----------------------------------*/
 /*
 
