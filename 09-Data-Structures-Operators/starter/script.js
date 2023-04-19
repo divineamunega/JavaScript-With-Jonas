@@ -109,6 +109,36 @@ const gameEvents = new Map([
   [92, '🔶 Yellow card'],
 ]);
 
+/** ----------------------- Coding Challenge 4-------------------- */
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector(`button`).addEventListener(`click`, function () {
+  const string = document.querySelector(`textarea`).value;
+  const str1LineArr = string.split('\n');
+
+  let counter = 0;
+  for (const str of str1LineArr) {
+    if (str.includes(`_`)) {
+      counter++;
+      const underScoreIndex = str.indexOf(`_`);
+      const b4UnderScore = str.slice(0, underScoreIndex).toLowerCase();
+      const underscoreLetter = str[underScoreIndex + 1].replace(
+        str[underScoreIndex + 1],
+        str[underScoreIndex + 1].toUpperCase()
+      );
+      const afterUnderScore = str.slice(underScoreIndex + 2).toLowerCase();
+      let strToPas = b4UnderScore + underscoreLetter + afterUnderScore;
+      // console.log(counter);
+      const strsemi = strToPas.padEnd(17, ' ');
+      const strFinal = strsemi.padEnd(strsemi.length + counter, `✅`);
+      console.log(strFinal);
+    }else{
+      console.log(`This is not in camel case`);
+    }
+  }
+});
+
 /** ---------- Working With Strings Part 3---------------------- */
 /*
 // Split and Join
