@@ -109,6 +109,52 @@ const gameEvents = new Map([
   [92, '🔶 Yellow card'],
 ]);
 
+/** ---------- Working With Strings Part 3---------------------- */
+
+// Split and Join
+console.log(`a+very+nice+string`.split(`+`));
+console.log(`Jonas Schmedtmann`.split(` `));
+
+const [firstName, lastName] = `Jonas Schedtmann`.split(` `);
+const newName = [`Mr`, firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const captalizeName = function(name){
+  const names = name.split(` `);
+  const namesUpper = [];
+  for(const n of names){
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(` `));
+}
+const passenger = `jessica ann smith davis`;
+captalizeName(passenger);
+captalizeName(`divine amunega`);
+
+// Padding a String
+
+const message = `Go to gate 23`
+console.log(message.padStart(30, ' ').padEnd(35,'*'));
+
+const maskCreditCar = function(number){
+  const str = number + ``;
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*')
+}
+
+console.log(maskCreditCar(1234464783920102983));
+
+
+// Repeat 
+
+const message2 = `bad weather... All departures delayed`;
+console.log(message2.repeat(1));
+
+const planesInLine = function(n){
+   console.log(`THere are ${n} planes in line ${`✈🛫`.repeat(n)}`);
+}
+
+planesInLine(10)
 /** ---------- Working With Strings Part 2---------------------- */
 /*
 const airline = `TAP Air Portugal`;
