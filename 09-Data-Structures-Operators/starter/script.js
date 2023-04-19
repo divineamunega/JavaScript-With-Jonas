@@ -110,6 +110,69 @@ const gameEvents = new Map([
 ]);
 
 /** ---------- Working With Strings Part 2---------------------- */
+const airline = `TAP Air Portugal`;
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+console.log(`Divine`.toUpperCase());
+
+// Fix Capitilzation in email
+const passengerName = (passenger) => {
+  const passengerLower = String(passenger).toLowerCase();
+  const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+  return (passengerCorrect);
+}
+
+console.log(passengerName(44));
+
+// Comparing emails
+const email = `hello@jonas.io`;
+const loginEmail = ` Hello@jonas.Io \n`
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+
+// Replacing
+const priceGB = `200,97₤`;
+const priceUS = priceGB.replace(`₤`, `$`).replace(`,`,`.`);
+console.log(priceUS);
+
+const announcment = `All passengers come to boarding door 23. Boarding door 23`;
+console.log(announcment.replace(/door/g, `gate`));
+console.log(announcment.replaceAll(`door`, `gate`));
+
+// Booleans
+
+const plane = `Airbus A320neo`;
+console.log(plane.includes(`A320`));
+console.log(plane.includes(`Boen `));
+console.log(plane.startsWith(`Air`));
+
+
+if(plane.startsWith(`Airbus`) && plane.endsWith(`neo`)){
+  console.log(`Part of the NEW airbus family`);
+}
+
+const checkBaggage = function(items){
+  const baggage = items.toLowerCase();
+  if(baggage.includes(`knife`) || baggage.includes(`gun`)){
+    console.log(`You are not Welcome on board`);
+  }else{
+    console.log(`Welcome Aboard`);
+  }
+}
+
+checkBaggage(`I have a laptop, some Food and a pocket knife`);
+checkBaggage(`Socks and Camera`);
+checkBaggage(`Got some snacks annd a gun for protection`);
+
+
+
 /** ---------- Working With Strings Part 1---------------------- */
 /*const airline = `TAP Air Portugal`;
 const plane = `A320`;
