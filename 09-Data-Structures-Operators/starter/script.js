@@ -110,6 +110,7 @@ const gameEvents = new Map([
 ]);
 
 /** ---------- Working With Strings Part 2---------------------- */
+/*
 const airline = `TAP Air Portugal`;
 console.log(airline.toLowerCase());
 console.log(airline.toUpperCase());
@@ -171,7 +172,7 @@ checkBaggage(`I have a laptop, some Food and a pocket knife`);
 checkBaggage(`Socks and Camera`);
 checkBaggage(`Got some snacks annd a gun for protection`);
 
-
+*/
 
 /** ---------- Working With Strings Part 1---------------------- */
 /*const airline = `TAP Air Portugal`;
