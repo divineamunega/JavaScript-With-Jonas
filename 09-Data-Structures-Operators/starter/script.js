@@ -110,7 +110,7 @@ const gameEvents = new Map([
 ]);
 
 /** ---------- Working With Strings Part 3---------------------- */
-
+/*
 // Split and Join
 console.log(`a+very+nice+string`.split(`+`));
 console.log(`Jonas Schmedtmann`.split(` `));
@@ -155,6 +155,7 @@ const planesInLine = function(n){
 }
 
 planesInLine(10)
+*/
 /** ---------- Working With Strings Part 2---------------------- */
 /*
 const airline = `TAP Air Portugal`;
