@@ -65,7 +65,7 @@ checkIn(flight, jonas);
 
 ///////////////////////////////////////////
 // Functions Accepting Callback Functions
-
+/*
 const oneWord = function (str) {
   return str.replaceAll(` `, ``).toLowerCase();
 };
@@ -117,4 +117,29 @@ const addNumbers = function (a, b, callback) {
 }
 
 addNumbers(2,3,callBack2);
+*/
 
+//////////////////////////////////
+// Functions Returning Functions 😪
+
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// const greet = greeting => {
+//   return name => {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+const greet = greeting => name => console.log(`${greeting}, ${name}`);
+
+ 
+const greeterHey = greet(`Hey`);
+console.log(greeterHey);
+greeterHey(`Jonas`);
+greeterHey(`Steven`);
+
+greet(`Hello`)(`Divine`);
