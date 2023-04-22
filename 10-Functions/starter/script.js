@@ -70,31 +70,51 @@ const oneWord = function (str) {
   return str.replaceAll(` `, ``).toLowerCase();
 };
 
-const upperFirstWord = function(str){
-   const [first,...others] = str.split(` `);
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(` `);
   return [first.toUpperCase(), ...others].join(` `);
-}
+};
 
 // Higher Order Function
-const transformer = function(str, fn){
+const transformer = function (str, fn) {
   console.log(`Original String: ${str}`);
   console.log(`Transformed String: ${fn(str)}`);
 
   console.log(`Transformed by: ${fn.name}`);
   console.log(typeof fn);
-}
+};
 
 transformer(`JavaScript is the best`, upperFirstWord);
 transformer(`JavaScript is the best`, oneWord);
 
-
 // JS uses call backs all the time 🥲
-const high5 = function(){
+const high5 = function () {
   console.log(`👋`);
-}
+};
 
 document.body.addEventListener(`click`, high5);
 
-[`Jonas`, `Martha`, `Adam`].forEach(high5); 
+[`Jonas`, `Martha`, `Adam`].forEach(high5);
 
 // Write a function that takes a callback as an argument and calls that callback with the string "hello" when invoked.
+
+const callback1 = function(str){
+  console.log(str);
+}
+const callWithHello = function (callback) {
+  callback('hello');
+};
+
+callWithHello(callback1);
+
+// Write a function that takes two numbers and a callback, and calls the callback with the result of adding the two numbers together.
+
+const callBack2 = function(a){
+  console.log(a);
+}
+const addNumbers = function (a, b, callback) {
+  callback(a + b);
+}
+
+addNumbers(2,3,callBack2);
+
