@@ -66,4 +66,35 @@ checkIn(flight, jonas);
 ///////////////////////////////////////////
 // Functions Accepting Callback Functions
 
+const oneWord = function (str) {
+  return str.replaceAll(` `, ``).toLowerCase();
+};
 
+const upperFirstWord = function(str){
+   const [first,...others] = str.split(` `);
+  return [first.toUpperCase(), ...others].join(` `);
+}
+
+// Higher Order Function
+const transformer = function(str, fn){
+  console.log(`Original String: ${str}`);
+  console.log(`Transformed String: ${fn(str)}`);
+
+  console.log(`Transformed by: ${fn.name}`);
+  console.log(typeof fn);
+}
+
+transformer(`JavaScript is the best`, upperFirstWord);
+transformer(`JavaScript is the best`, oneWord);
+
+
+// JS uses call backs all the time 🥲
+const high5 = function(){
+  console.log(`👋`);
+}
+
+document.body.addEventListener(`click`, high5);
+
+[`Jonas`, `Martha`, `Adam`].forEach(high5); 
+
+// Write a function that takes a callback as an argument and calls that callback with the string "hello" when invoked.
