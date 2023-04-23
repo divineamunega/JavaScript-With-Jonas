@@ -151,53 +151,93 @@ greet(`Hello`)(`Divine`);
 
 const luftahansa = {
   airline: `Luftahansa`,
-  iataCode:`LH`,
-  bookings : [],
+  iataCode: `LH`,
+  bookings: [],
 
   book(flightNum, name) {
-    console.log(this);
-    console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+    // console.log(this);
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
     console.log(this.bookings);
-    this.bookings.push({flight: `${this.iataCode}${flightNum}`, name})
-    console.log(this.bookings);
-  }
-}
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+    // console.log(this.bookings);
+  },
+};
 
 luftahansa.book(239, `Jonas Schmedtmann`);
 luftahansa.book(635, `John Smith`);
 
-console.log(luftahansa);
+// console.log(luftahansa);
 const eurowings = {
-  name:`Eurowings`,
-  iataCode:`EW`,
-  bookings:[],
-}
+  airline: `Eurowings`,
+  iataCode: `EW`,
+  bookings: [],
+};
 
 const book = luftahansa.book;
 
 // Does Not Work
 // book(23,`Sarah Williams`)
 
-
 // Call Method
-book.call(eurowings,23,`Sarah Williams`);
-console.log(eurowings);
+book.call(eurowings, 23, `Sarah Williams`);
+// console.log(eurowings);
 
-book.call(luftahansa,239,`Mary Cooper`);
+book.call(luftahansa, 239, `Mary Cooper`);
 
 const swiss = {
-  airline:`Swiss Air Lines`,
+  airline: `Swiss Air Lines`,
   iataCode: `LX`,
-  bookings:[],
-}
+  bookings: [],
+};
 
-book.call(swiss, 583,`Mary Cooper`);
-
+book.call(swiss, 583, `Mary Cooper`);
 
 // Apply Method
 const flightData = [283, `George Cooper`];
-book.apply(swiss,flightData);
-console.log(swiss);
+book.apply(swiss, flightData);
+// console.log(swiss);
 
-book.call(swiss, ...flightData )
+book.call(swiss, ...flightData);
 
+
+
+/////////////////////////////////////
+// Bind Method
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(luftahansa);
+const bookSW = book.bind(swiss);
+bookEW(23, `Steven Williams`);
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23(`Divine Amunega`);
+bookEW23(`Martha Cooper`);
+
+
+// With Event Listeners
+luftahansa.planes = 300;
+luftahansa.buyPlane = function() {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+}
+
+document.querySelector(`.buy`).addEventListener(`click`, luftahansa.buyPlane.bind(luftahansa));
+
+
+// Partial Application
+
+const addTax = (rate, value) => value + value * rate;
+const addVAT = addTax.bind(null,0.23);
+
+console.log(addVAT(100));
+
+const addTax1 = function(rate,value){
+  
+  const addVAT = addTax1.bind(null, rate)
+  return addVAT;
+}
+const addVat1 = addTax1(12,2);
