@@ -148,7 +148,7 @@ greet(`Hello`)(`Divine`);
 
 /////////////////////////////
 // The call and apply Methods
-
+/*
 const luftahansa = {
   airline: `Luftahansa`,
   iataCode: `LH`,
@@ -200,12 +200,11 @@ book.apply(swiss, flightData);
 // console.log(swiss);
 
 book.call(swiss, ...flightData);
-
-
+*/
 
 /////////////////////////////////////
 // Bind Method
-
+/*
 const bookEW = book.bind(eurowings);
 const bookLH = book.bind(luftahansa);
 const bookSW = book.bind(swiss);
@@ -241,3 +240,6 @@ const addTax1 = function(rate,value){
   return addVAT;
 }
 const addVat1 = addTax1(12,2);
+*/
+
+
