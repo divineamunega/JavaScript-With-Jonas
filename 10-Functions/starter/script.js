@@ -280,6 +280,7 @@ document.querySelector(`.poll`).addEventListener(`click`, poll.registerNewAnswer
 /////////////////////////////////////
 // Immediately Invoked Functions
 
+/*
 const runOnce = function () {
   console.log(`THis will never run again`);
 };
@@ -290,3 +291,5 @@ runOnce();
 })();
 
 (() => console.log(`This will also never run again.`))();
+*/
+
