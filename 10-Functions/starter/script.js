@@ -242,4 +242,36 @@ const addTax1 = function(rate,value){
 const addVat1 = addTax1(12,2);
 */
 
+////////////////////////////////////
+// Coding Challenge 1 😪
 
+const poll = {
+  question: `What is your favourute programming language?`,
+  options: [`0 : JavaScript`, `1: Python`, `2: Rust`, `3: C++`],
+  answers: new Array(4).fill(0),
+
+  registerNewAnswer() {
+    const optionPrompt = prompt(
+      `What is your favourite programming language? \n 0:  JavaScript \n 1:  Python \n 2:  Rust \n 3:  C++ \n (Write Option Number)`
+    );
+    const option = Number(optionPrompt)
+
+    if (isNaN(option) || option > 3 || option < 0) {
+      alert(`Input A valid option`);
+    } else {
+      this.answers[Number(option)]++;
+    }
+
+    this.displayResults(`string`);
+  },
+
+  displayResults(type = `array`){
+    type === `array` && console.log(this.answers);
+    type === `string` && console.log(`Poll results are ${[this.answers.join(`, `)]}.`);
+
+    console.log(bonusTestData1);
+  }
+};
+
+const bonusTestData1 = [5, 2, 3];
+document.querySelector(`.poll`).addEventListener(`click`, poll.registerNewAnswer.bind(poll));
