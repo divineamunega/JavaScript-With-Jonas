@@ -244,7 +244,7 @@ const addVat1 = addTax1(12,2);
 
 ////////////////////////////////////
 // Coding Challenge 1 😪
-
+/*
 const poll = {
   question: `What is your favourute programming language?`,
   options: [`0 : JavaScript`, `1: Python`, `2: Rust`, `3: C++`],
@@ -275,3 +275,18 @@ const poll = {
 
 const bonusTestData1 = [5, 2, 3];
 document.querySelector(`.poll`).addEventListener(`click`, poll.registerNewAnswer.bind(poll));
+*/
+
+/////////////////////////////////////
+// Immediately Invoked Functions
+
+const runOnce = function () {
+  console.log(`THis will never run again`);
+};
+runOnce();
+
+(function () {
+  console.log(`This will never run again.`);
+})();
+
+(() => console.log(`This will also never run again.`))();
