@@ -299,6 +299,7 @@ runOnce();
 /////////////////////////////////////////
 // Closures
 
+/*
 const secureBooking = function(){
   let passengerCount = 0;
   return function(){
@@ -312,3 +313,7 @@ booker()
 booker()
 
 console.dir(booker);
+*/
+
+//////////////////////////////////////
+// More Closure Examples
