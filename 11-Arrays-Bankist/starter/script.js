@@ -153,6 +153,9 @@ movements.forEach(function (move,i,array) {
 });
 */
 
+
+////////////////////////////////////
+// FOREACH FOR MAPS AND SETS
 // Map
 const currencies = new Map([
   ['USD', 'United States dollar'],
