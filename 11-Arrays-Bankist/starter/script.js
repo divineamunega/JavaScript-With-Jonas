@@ -71,10 +71,9 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-
 
 ////////////////////////////////////////////
 // SIMPLE ARRAY METHODS
@@ -118,7 +117,9 @@ console.log(letters.join(`>`));
 
 */
 
-// Tha new at Method ES2022
+/////////////////////////////////
+// The new at Method ES2022
+/*
 const arr = [23,11,64];
 console.log(arr[0]);
 console.log(arr.at(0));
@@ -131,3 +132,24 @@ console.log(arr.at(-1));
 
 console.log(`Jonas`.at(0));
 console.log(`Jonas`.at(0-1));
+*/
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const move of movements) {
+for (const [i, move] of movements.entries()) {
+  console.log(
+    `Movement ${i + 1}: ${
+      move > 0 ? `You deposited ${move}` : `You withdew ${Math.abs(move)}`
+    }`
+  );
+}
+
+console.log(`---- FOREACH ------`); 
+movements.forEach(function (move,i,array) {
+  console.log(
+    `Movement ${i + 1}: ${
+      move > 0 ? `You deposited ${move}` : `You withdew ${Math.abs(move)}`
+    }`
+  );
+});
