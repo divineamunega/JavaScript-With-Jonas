@@ -61,6 +61,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+
+const displayMovements = function(movements){
+
+}
+displayMovements();
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -157,6 +163,7 @@ movements.forEach(function (move,i,array) {
 ////////////////////////////////////
 // FOREACH FOR MAPS AND SETS
 // Map
+/*
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
@@ -174,3 +181,4 @@ const currenciesUnique = new Set([`USD`, `GBP`, `USD`, `Eur`, `Eur`]);
 currenciesUnique.forEach(function (value, _, map) {
   console.log(`${value}: ${value}`);
 });
+*/
