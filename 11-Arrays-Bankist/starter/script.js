@@ -223,3 +223,18 @@ juliaDogs = [9, 16, 6, 8, 3];
 kateDogs = [10, 5, 6, 1, 4];
 checkDogs(juliaDogs,kateDogs)
 */
+
+//////////////////////////////
+// The Filter Method
+/*
+const deposits  = account1.movements.filter(function(mov){
+  return mov > 0;
+});
+
+console.log(deposits);
+
+const withdrawals = account1.movements.filter(function(val){
+  return val < 0;
+})
+console.log(withdrawals);
+*/
