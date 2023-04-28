@@ -234,6 +234,7 @@ const withdrawals = account1.movements.filter(function(val){
 console.log(withdrawals);
 */
 
+/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 const eurToUsd = 1.1;
@@ -255,3 +256,4 @@ const movmentDescriptions = movements.map((mov, i) => {
 });
 
 console.log(movmentDescriptions);
+*/
