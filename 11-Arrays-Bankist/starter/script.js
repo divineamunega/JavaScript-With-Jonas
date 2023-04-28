@@ -79,6 +79,21 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const createUserName = (accs) => {
+  accs.forEach(val => {
+    
+    val.username = val.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  })
+}
+
+createUserName(accounts);
+
+
+
 // console.log(containerMovements.innerHTML);
 
 /////////////////////////////////////////////////
@@ -257,3 +272,15 @@ const movmentDescriptions = movements.map((mov, i) => {
 
 console.log(movmentDescriptions);
 */
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+
+// Accumulator => Snowball
+const balance = movements.reduce((acc,current) => acc + current,0);
+console.log(balance);
+
+let balance2 = 0;
+for(const mov of movements){
+  balance2 += mov;
+}
+console.log(balance2);
