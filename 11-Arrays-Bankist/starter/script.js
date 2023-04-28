@@ -79,16 +79,15 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
-const createUserName = (accs) => {
+const createUserName = accs => {
   accs.forEach(val => {
-    
     val.username = val.owner
       .toLowerCase()
       .split(' ')
       .map(name => name[0])
       .join('');
-  })
-}
+  });
+};
 
 createUserName(accounts);
 
@@ -97,9 +96,7 @@ const calcDisplayBalance = movements => {
   labelBalance.textContent = `${balance} €`;
 };
 
-
 calcDisplayBalance(account1.movements);
-
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -277,6 +274,10 @@ const movmentDescriptions = movements.map((mov, i) => {
 
 console.log(movmentDescriptions);
 */
+
+///////////////////////////////////
+// THe Reduce Method
+/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 
@@ -300,3 +301,28 @@ const max = movements.reduce((acc,mov) => {
 }, movements[0])
 
 console.log(max);
+*/
+
+//////////////////////////
+// CODING CHALLENGE 2
+/*
+const calcAverageHumanAge = function (arr) {
+  const humanAgeArr = arr
+    .map(dogAge => {
+      const humanAge = dogAge <= 2 ? dogAge * 2 : 176 + dogAge * 4;
+      return humanAge;
+    })
+    .filter(humanAge => humanAge > 18);
+
+    console.log(humanAgeArr);
+
+  const average = humanAgeArr.reduce((acc, val, i, el) => {
+    return acc + val /  el.length;
+  },0);
+
+  console.log(average);
+};
+
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+*/
