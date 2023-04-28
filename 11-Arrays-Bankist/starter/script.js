@@ -82,7 +82,7 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
-console.log(containerMovements.innerHTML);
+// console.log(containerMovements.innerHTML);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -198,3 +198,27 @@ currenciesUnique.forEach(function (value, _, map) {
   console.log(`${value}: ${value}`);
 });
 */
+
+
+
+/////////////////////////////////////////////
+// Coding CHallenge 1
+
+
+let juliaDogs = [3, 5, 2, 12, 7];
+let kateDogs = [4, 1, 15, 8, 3];
+
+const checkDogs = (dogsJulia, dogKate) => {
+  const correctDogsJulia = dogsJulia.slice(1,-2);
+  
+  const dogs = [...correctDogsJulia,...dogKate];
+  dogs.forEach(function(age,i){
+    console.log(`Dog number ${i + 1} is ${age >= 3 ? `an adult and is ${age} years old.` : `still a puppy 🐶`}`);
+  })
+};
+
+checkDogs(juliaDogs,kateDogs);
+
+juliaDogs = [9, 16, 6, 8, 3];
+kateDogs = [10, 5, 6, 1, 4];
+checkDogs(juliaDogs,kateDogs)
