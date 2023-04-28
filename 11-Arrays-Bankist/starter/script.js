@@ -204,7 +204,7 @@ currenciesUnique.forEach(function (value, _, map) {
 /////////////////////////////////////////////
 // Coding CHallenge 1
 
-
+/*
 let juliaDogs = [3, 5, 2, 12, 7];
 let kateDogs = [4, 1, 15, 8, 3];
 
@@ -222,3 +222,4 @@ checkDogs(juliaDogs,kateDogs);
 juliaDogs = [9, 16, 6, 8, 3];
 kateDogs = [10, 5, 6, 1, 4];
 checkDogs(juliaDogs,kateDogs)
+*/
