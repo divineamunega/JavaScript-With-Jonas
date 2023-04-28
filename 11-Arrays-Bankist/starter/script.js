@@ -62,7 +62,6 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 const displayMovements = function (movements) {
-
   containerMovements.innerHTML = ``;
   movements.forEach(function (mov, i) {
     const type = mov > 0 ? `deposit` : `withdrawal`;
@@ -75,9 +74,7 @@ const displayMovements = function (movements) {
           <div class="movements__value">${Math.abs(mov)}</div>
         </div>`;
 
-
-    containerMovements.insertAdjacentHTML(`afterbegin`,html);
-
+    containerMovements.insertAdjacentHTML(`afterbegin`, html);
   });
 };
 displayMovements(account1.movements);
@@ -199,8 +196,6 @@ currenciesUnique.forEach(function (value, _, map) {
 });
 */
 
-
-
 /////////////////////////////////////////////
 // Coding CHallenge 1
 
@@ -238,3 +233,25 @@ const withdrawals = account1.movements.filter(function(val){
 })
 console.log(withdrawals);
 */
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1;
+
+const movementsToUsd = movements.map(mov => mov * eurToUsd);
+console.log(movements);
+console.log(movementsToUsd);
+
+const movementsUsdfor = [];
+for (const mov of movements) {
+  movementsUsdfor.push(mov * eurToUsd);
+}
+console.log(movementsUsdfor);
+
+const movmentDescriptions = movements.map((mov, i) => {
+  return `Movement ${i + 1}: You ${
+    mov > 0 ? ` deposited ${mov}` : ` withdew ${Math.abs(mov)}`
+  }`;
+});
+
+console.log(movmentDescriptions);
