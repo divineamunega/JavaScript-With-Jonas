@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "type": "chrome",
+            "type": "msedge",
             "name": "https://localhost:8080",
             "request": "launch",
             "url": "https://localhost:8080"

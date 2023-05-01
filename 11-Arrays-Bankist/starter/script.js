@@ -114,7 +114,7 @@ const calcDisplayBalance = acc => {
   labelBalance.textContent = `${acc.balance}€`;
 };
 
-const updateUI = function(acct){
+const updateUI = function (acct) {
   // Display movements
   displayMovements(acct.movements);
 
@@ -123,7 +123,7 @@ const updateUI = function(acct){
 
   // Display Summarry
   calcDisplaySummary(acct);
-}
+};
 
 // Event Handler
 
@@ -175,9 +175,30 @@ btnTransfer.addEventListener(`click`, function (e) {
 
     // Update Ui
     updateUI(currentAccount);
-     
   }
 });
+
+btnClose.addEventListener(`click`, function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    console.log(index);
+
+    // Delete Account
+    accounts.splice(index,1);
+    containerApp.style.opacity = 0;
+      console.log(accounts);
+    inputClosePin.value = "";
+    inputCloseUsername.value = "";
+  }
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -455,4 +476,11 @@ for (let i = 0; i < accounts.length; i++) {
 }
 
 console.log(account);
+*/
+
+/*
+console.log(movements);
+console.log(movements.includes(-130));
+
+console.log(movements.some(mov => mov > 0));
 */
