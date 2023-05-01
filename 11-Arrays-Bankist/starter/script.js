@@ -20,9 +20,9 @@ const account2 = {
 };
 
 const account3 = {
-  owner: 'Steven Thomas Williams',
-  movements: [200, -200, 340, -300, -20, 50, 400, -460],
-  interestRate: 0.7,
+  owner: 'Divine Amunega',
+  movements: [200, 200, 340, 300, -20, 50, 400, -460],
+  interestRate: 2.7,
   pin: 3333,
 };
 
@@ -77,48 +77,76 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML(`afterbegin`, html);
   });
 };
-displayMovements(account1.movements);
 
 const createUserName = accs => {
   accs.forEach(val => {
     val.username = val.owner
       .toLowerCase()
       .split(' ')
-      .map(name => name[0])
+      .map(name => name.at(0))
       .join('');
   });
 };
 
 createUserName(accounts);
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (account) {
+  const incomes = account.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes} €`;
 
-  const out = movements
+  const out = account.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = account.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * account.interest) / 100)
     .filter(int => int >= 1)
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest} €`;
 };
-
-calcDisplaySummary(account1.movements);
 
 const calcDisplayBalance = movements => {
   const balance = movements.reduce((acc, mov) => acc + mov);
   labelBalance.textContent = `${balance}€`;
 };
 
-calcDisplayBalance(accounts[0].movements);
+// Event Handler
 
+let currentAccount;
+btnLogin.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  console.log(`Login`);
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and Welcome Message
+    labelWelcome.textContent = `Welcome Back ${currentAccount.owner
+      .split(` `)
+      .at(0)}`;
+    containerApp.style.opacity = 100;
+
+    // Clear Input Feilds
+    inputLoginPin.value = inputLoginUsername.value = '';
+    inputLoginPin.blur();
+    inputLoginUsername.blur();
+    // Display movements
+    displayMovements(currentAccount.movements);
+
+    // Display Balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display Summarry
+    calcDisplaySummary(currentAccount );
+  }
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -381,6 +409,7 @@ calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 */
 /////////////////////////////
 // The Find Method
+/*
 const firstWithdrawal = movements.find(mov => mov < 0);
 console.log(movements);
 console.log(firstWithdrawal);
@@ -395,3 +424,4 @@ for (let i = 0; i < accounts.length; i++) {
 }
 
 console.log(account);
+*/
