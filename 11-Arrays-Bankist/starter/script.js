@@ -107,7 +107,7 @@ const calcDisplaySummary = function (movements) {
     .map(deposit => (deposit * 1.2) / 100)
     .filter(int => int >= 1)
     .reduce((acc, int) => acc + int, 0);
-    labelSumInterest.textContent = `${interest} €`
+  labelSumInterest.textContent = `${interest} €`;
 };
 
 calcDisplaySummary(account1.movements);
@@ -348,7 +348,6 @@ calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 */
 
-
 /*
 const eurToUsd = 1.1;
 const totalDepositsUSD = movements
@@ -380,3 +379,19 @@ const calcAverageHumanAge = function (arr) {
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 */
+/////////////////////////////
+// The Find Method
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(acc => (acc.owner = `Jessica Davies`));
+
+for (let i = 0; i < accounts.length; i++) {
+  if ((accounts[i].owner === `Jessica Davies`)) console.log(account[i]);
+  break;
+}
+
+console.log(account);
