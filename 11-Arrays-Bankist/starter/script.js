@@ -103,9 +103,9 @@ const calcDisplaySummary = function (account) {
 
   const interest = account.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * account.interest) / 100)
+    .map(deposit => (deposit * account.interestRate) / 100)
     .filter(int => int >= 1)
-    .reduce((acc, int) => acc + int, 0);
+    .reduce((acc, int) => acc + int,0);
   labelSumInterest.textContent = `${interest} €`;
 };
 
@@ -178,6 +178,21 @@ btnTransfer.addEventListener(`click`, function (e) {
   }
 });
 
+btnLoan.addEventListener(`click`, function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add the movements
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = '';
+});
+
 btnClose.addEventListener(`click`, function (e) {
   e.preventDefault();
 
@@ -191,11 +206,11 @@ btnClose.addEventListener(`click`, function (e) {
     console.log(index);
 
     // Delete Account
-    accounts.splice(index,1);
+    accounts.splice(index, 1);
     containerApp.style.opacity = 0;
-      console.log(accounts);
-    inputClosePin.value = "";
-    inputCloseUsername.value = "";
+    console.log(accounts);
+    inputClosePin.value = '';
+    inputCloseUsername.value = '';
   }
 });
 
@@ -478,9 +493,21 @@ for (let i = 0; i < accounts.length; i++) {
 console.log(account);
 */
 
-/*
+// Equality
 console.log(movements);
 console.log(movements.includes(-130));
 
-console.log(movements.some(mov => mov > 0));
-*/
+// SOME: CONDITION
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
+
+
+// EVERY
+
+console.log(movements.every(mov => mov >0));
+console.log(account4.movements.every(mov => mov >0));
+
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
