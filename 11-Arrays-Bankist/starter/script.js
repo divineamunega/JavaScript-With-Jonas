@@ -62,7 +62,7 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 const displayMovements = function (movements, sort = false) {
-const movs = sort ? movements.slice().sort((a,b) => a - b) : movements;
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   containerMovements.innerHTML = ``;
   movs.forEach(function (mov, i) {
@@ -217,12 +217,11 @@ btnClose.addEventListener(`click`, function (e) {
 });
 
 let sorted = false;
-btnSort.addEventListener(`click`, function(e){
-
+btnSort.addEventListener(`click`, function (e) {
   e.preventDefault();
-  displayMovements(currentAccount.movements,!sorted);
+  displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
-})
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -555,7 +554,7 @@ const overallBalance = accounts
 
   */
 
-
+/*
 //////////////////////////////////
 // SORTING ARRAYS
 
@@ -595,3 +594,38 @@ console.log(movements);
 movements.sort((a, b) => a + b);
 
 console.log(movements);
+*/
+
+// Empty Array + Fill Method
+
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+
+const x = new Array(7);
+console.log(x);
+
+// x.fill(1);
+
+x.fill(1, 3, 5);
+console.log(x);
+arr.fill(23, 2, 6);
+console.log(arr);
+
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 100 }, () => {
+  return Math.trunc(Math.random() * 6) + 1;
+});
+console.log(z);
+
+labelBalance.addEventListener(`click`, () => {
+  const movementsUi = Array.from(
+    document.querySelectorAll(`.movements__value`),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUi);
+
+  const movementsUi2 = document.querySelectorAll(`.movements__value`);
+});
+
