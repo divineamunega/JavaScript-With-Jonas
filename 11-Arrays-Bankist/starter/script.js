@@ -598,7 +598,7 @@ console.log(movements);
 
 // Empty Array + Fill Method
 
-
+/*
 const arr = [1, 2, 3, 4, 5, 6, 7];
 
 const x = new Array(7);
@@ -628,4 +628,69 @@ labelBalance.addEventListener(`click`, () => {
 
   const movementsUi2 = document.querySelectorAll(`.movements__value`);
 });
+*/
 
+////////////////////////////////////////////
+// Array Methods Practice
+
+// 1.
+// const bankDepositSum = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov > 0)
+//   .reduce((acc, mov) => acc + mov, 0);
+/*
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, curr) => {
+    return curr > 0 ? acc + curr : acc;
+  }, 0);
+console.log(bankDepositSum);
+
+// 2.
+const bankDepositsGreater1000 = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov >= 1000).length;
+console.log(bankDepositsGreater1000);
+
+const numDeposits100 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, curr) => (curr >= 1000 ? count + 1 : count), 0);
+console.log(numDeposits100);
+
+// 3.
+const { deposit, withdrawls } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, curr) => {
+      //  curr > 0 ? sums.deposit += curr : sums.withdrawls += curr;
+
+      sums[curr > 0 ? `deposit` : `withdrawls`] += curr;
+      return sums;
+    },
+    { deposit: 0, withdrawls: 0 }
+  );
+
+console.log(deposit, withdrawls);
+
+// 4.
+
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+  const exceptions = [`a`, `an`, `the`, `and`, `but`, `on`, `in`, `with`];
+
+  const titleCase = capitalize(
+    title
+      .toLowerCase()
+      .split(' ')
+      .map(word =>
+        exceptions.includes(word) ? word : capitalize(word)
+      )
+      .join(' ')
+  );
+
+  return titleCase;
+};
+console.log(convertTitleCase(`this is a title case`));
+console.log(convertTitleCase(`this is a LONG title but not too long`));
+console.log(convertTitleCase(`and here is another title with an EXAMPLE`));
+*/
