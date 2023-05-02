@@ -22,7 +22,7 @@ const account2 = {
 const account3 = {
   owner: 'Divine Amunega',
   movements: [200, 200, 340, 300, -20, 50, 400, -460],
-  interestRate: 2.7,
+  interestRate: 2.0,
   pin: 3333,
 };
 
@@ -61,9 +61,11 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
+const movs = sort ? movements.slice().sort((a,b) => a - b) : movements;
+
   containerMovements.innerHTML = ``;
-  movements.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? `deposit` : `withdrawal`;
 
     const html = `
@@ -213,6 +215,14 @@ btnClose.addEventListener(`click`, function (e) {
     inputCloseUsername.value = '';
   }
 });
+
+let sorted = false;
+btnSort.addEventListener(`click`, function(e){
+
+  e.preventDefault();
+  displayMovements(currentAccount.movements,!sorted);
+  sorted = !sorted;
+})
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -516,6 +526,10 @@ console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 */
 
+/*
+//////////////////////////////////////
+// THE FLAT AND FLAT-MAP METHODS
+
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 
 console.log(arr.flat());
@@ -538,3 +552,46 @@ const overallBalance = accounts
   .reduce((acc, mov) => acc + mov, 0);
   
   console.log(overallBalance1);
+
+  */
+
+
+//////////////////////////////////
+// SORTING ARRAYS
+
+// STRINGS
+const owners = [`Jonas`, `Zach`, `Adan`, `Martha`];
+console.log(owners.sort());
+console.log(owners);
+
+console.log(movements);
+
+// Return < 0 a,b
+// Return > 0 b,a
+
+// Ascending
+// movements.sort((a,b) => {
+//   if(a > b){
+//     return 2;
+//   }
+//   if(a < b){
+//     return -3;
+//   }
+// })
+
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+// Descending
+// movements.sort((a, b) => {
+//   if (a > b) {
+//     return -1;
+//   }
+//   if (a < b) {
+//     return 3;
+//   }
+// });
+
+movements.sort((a, b) => a + b);
+
+console.log(movements);
