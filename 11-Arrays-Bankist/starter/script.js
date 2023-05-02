@@ -694,3 +694,67 @@ console.log(convertTitleCase(`this is a title case`));
 console.log(convertTitleCase(`this is a LONG title but not too long`));
 console.log(convertTitleCase(`and here is another title with an EXAMPLE`));
 */
+
+///////////////////////////////////////
+// Coding CHallenge 4
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+  { weight: 32, curFood: 376, owners: ['Divine'] },
+];
+
+// 1.
+dogs.forEach(curr => (curr.recommendedFood = curr.weight ** 0.75 * 28));
+console.log(dogs);
+
+// 2.
+const sarahDog = dogs.find(dog => dog.owners.includes(`Sarah`));
+console.log(
+  sarahDog.curFood > sarahDog.recommendedFood
+    ? `Sarah's dog eats too much 😝🤮`
+    : `Sarah's dog doesn't eat enough 🥹😭`
+);
+
+const ownersEatTooMuch = dogs.reduce((acc, dog) => {
+  // acc.push(dog.curFood > dog.recommendedFood ? dog : );
+  if (dog.curFood > dog.recommendedFood) {
+    acc.push(dog);
+  }
+  return acc;
+}, []);
+console.log(ownersEatTooMuch);
+
+const ownersEatTooLittle = dogs.reduce((acc, dog) => {
+  // acc.push(dog.curFood > dog.recommendedFood ? dog : );
+  if (dog.curFood < dog.recommendedFood) {
+    acc.push(dog);
+  }
+  return acc;
+}, []);
+console.log(ownersEatTooLittle);
+
+const ownersEatTooMuchString = `${ownersEatTooMuch
+  .flatMap(curr => curr.owners)
+  .join(` and `)}'s dogs eat too much.`;
+console.log(ownersEatTooMuchString);
+
+const ownersEatTooLittleString = `${ownersEatTooLittle
+  .flatMap(curr => curr.owners)
+  .join(` and `)}'s dogs eat too little.`;
+console.log(ownersEatTooLittleString);
+
+const eatingOkay = dog => {
+  return dog.curFood > dog.recommendedFood * 0.9 &&
+    dog.curFood < dog.recommendedFood * 1.1;
+};
+console.log(dogs.some(dog => eatingOkay(dog)));
+
+const dogOkay = dogs.filter(dog => eatingOkay(dog));
+console.log(dogOkay);
+
+const dogsCopy = [...dogs];
+
+dogsCopy.sort((a,b) => a.recommendedFood - b.recommendedFood);
+console.log(dogsCopy);
