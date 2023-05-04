@@ -321,6 +321,7 @@ console.log((2.345).toFixed(2));
 
 /////////////////////////////////////
 // THE REMAINDER OPERATOR
+
 console.log(5 % 2);
 console.log(5/2); // 5 = 2*2 + 1;
 
