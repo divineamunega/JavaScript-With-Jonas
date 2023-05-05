@@ -381,3 +381,43 @@ console.log(huge + BigInt(num));
 
 */
 
+//////////////////////////////////////
+// Dates and timer
+
+// Create a date
+
+// const now = new Date();
+// console.log(now);
+// console.log(
+//   new Date('Oct 20 2021'),
+// );
+
+// console.log(new Date('Dec 24 2015'));
+
+// console.log(new Date (account1.movementsDates.at(0)));
+
+// console.log(new Date (2037 ,10 ,19 ,15 ,23,5));
+// console.log(new Date(2037,1,1,12,5,70));
+
+// console.log(new Date (3 * 24 * 60 * 60 * 1000));
+
+// Working With Dates
+/*
+const future = new Date(2037, 10, 19, 15, 23, 5);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.getMilliseconds());
+console.log(future.toISOString());
+console.log(future.getTime());
+
+console.log(Date.now());
+
+future.setFullYear(2040)
+console.log(future);
+*/
