@@ -362,4 +362,22 @@ movementsRow.forEach((row,i) => {
 
 // console.log(Number(`202_2`));
 
+//////////////////////////////////////
+// Working With BigInt
+/*
 console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+
+console.log(122222222222222909000000000000n);
+
+// Operations
+console.log(10000n + 10000n);
+
+const huge = 202020102934320123294230122239201n;
+const num = 23;
+
+console.log(huge + BigInt(num));
+
+*/
+
