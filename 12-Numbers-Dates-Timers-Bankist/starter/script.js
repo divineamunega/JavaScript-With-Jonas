@@ -162,7 +162,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = formatCur(interest,acc.locale,acc.currency);
+  labelSumInterest.textContent = formatCur(interest, acc.locale, acc.currency);
 };
 
 const createUsernames = function (accs) {
@@ -284,14 +284,16 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(() => {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    // Add Loan Date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add Loan Date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
 });
@@ -513,6 +515,7 @@ console.log(days1);
 
 ////////////////////////////////////////////
 // Intermationalizing NUMBERS
+/*
 const num = 2929393939.99;
 
 const options = {
@@ -531,3 +534,24 @@ console.log(
 );
 
 console.log(navigator);
+*/
+
+//////////////////////////////////////////////
+// Timers setTimeout and setInterval
+
+const ingrediants = [`olives`, `spinach`];
+const pizzaTimer = setTimeout(
+  (ing1, ing2) =>
+    console.log(`Here is your Pizza 🍕🍕 with ${ing1} and ${ing2}`),
+  3000,
+  ...ingrediants
+);
+console.log(`Waiting for my pizza......`);
+if (ingrediants.includes(`spinach`)) clearTimeout(pizzaTimer);
+
+setInterval(() => {
+  const now = new Date();
+  console.log(`${now.getHours()}:${`${now.getMinutes()}`.padStart(2,0)}:${`${now.getSeconds()}`.padStart(2,0)}`);
+},1000)
+
+
