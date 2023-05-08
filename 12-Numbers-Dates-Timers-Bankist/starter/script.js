@@ -81,17 +81,45 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////
 // Coding this Myself
 
+////////////////////////////////////////
+/////////////////////
+/// FUNCTIONS
 /// Creating a function Usernames for all accounts in the accounts object
-const createUserName = function(acc){
-  acc.forEach((account) => {
-    account.userName = (account.owner.split(` `).map(name => name[0]).join('').toLowerCase()) 
-  })
-}
+const createUserName = function (acc) {
+  acc.forEach(account => {
+    account.userName = account.owner
+      .split(` `)
+      .map(name => name[0])
+      .join('')
+      .toLowerCase();
+  });
+};
 // Calling the function to make usernames in the accounts 1 and 2 objects
-createUserName(accounts)
+
+// Creating a function to display movements
 
 
+// createUserName(accounts);
 
+let currentAccount;
+
+////////////////////////////////////////////
+///////////////////////
+// EVENT HANDLERS
+btnLogin.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  // Collecting the pin and UserName
+  const userName = inputLoginUsername.value;
+  const pin = +inputLoginPin.value;
+
+  containerApp.style.opacity = 100;
+
+
+  // Clear the input fields
+  inputLoginUsername.value = inputLoginPin.value = '';
+  inputLoginUsername.blur();
+  inputLoginPin.blur();
+});
 
 /////////////////////////////////////////////////
 // Functions
