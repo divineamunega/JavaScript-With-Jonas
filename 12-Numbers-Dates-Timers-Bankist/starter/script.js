@@ -78,9 +78,16 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+/////////////////////////////////
+// Myself
+
+
+
+
+
 /////////////////////////////////////////////////
 // Functions
-
+/*
 const formatCur = function (value, local, curr) {
   return new Intl.NumberFormat(local, {
     style: `currency`,
@@ -356,7 +363,7 @@ btnSort.addEventListener('click', function (e) {
   e.preventDefault();
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
-});
+});*/
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
