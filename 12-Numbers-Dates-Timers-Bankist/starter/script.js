@@ -187,15 +187,40 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function () {
+  // Set The time to 100s
+  let time = 10;
+
+  const tick = function () {
+    // In each timer, print the corresponding time
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(timer);
+      containerApp.style.opacity = 0;
+      labelWelcome.textContent = `Log in to get started`;
+    }
+
+    // Decrease the time by 1s after every call
+    time--;
+  };
+
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 ////////////////////////////////////////
 // FAKE ALWAYS LOGGED-IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 ///////////////////////////////////////
 // Experimenting
@@ -246,6 +271,11 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    // Timers
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
+
+    startLogOutTimer();
     // Update UI
     updateUI(currentAccount);
   }
@@ -377,7 +407,7 @@ const randomInt = (min, max) =>w
 console.log(randomInt(100, 200));
 console.log(`Trunc`);
 console.log(Math.trunc(23.3));
-console.log(Math.trunc(23.9));
+console.log(Math.trunc(23.9))
 
 console.log(`Round`);
 console.log(Math.round(23.3));
@@ -551,7 +581,10 @@ if (ingrediants.includes(`spinach`)) clearTimeout(pizzaTimer);
 
 setInterval(() => {
   const now = new Date();
-  console.log(`${now.getHours()}:${`${now.getMinutes()}`.padStart(2,0)}:${`${now.getSeconds()}`.padStart(2,0)}`);
-},1000)
-
-
+  console.log(
+    `${now.getHours()}:${`${now.getMinutes()}`.padStart(
+      2,
+      0
+    )}:${`${now.getSeconds()}`.padStart(2, 0)}`
+  );
+}, 1000);
