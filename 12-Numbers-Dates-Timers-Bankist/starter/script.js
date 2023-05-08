@@ -23,7 +23,7 @@ const account1 = {
     '2020-05-08T14:11:59.604Z',
     '2023-05-02T17:01:17.194Z',
     '2023-05-04T23:36:17.929Z',
-    '2023-05-05T10:51:36.790Z',
+    '2023-05-08T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -97,17 +97,35 @@ const createUserName = function (acc) {
 // Calling the function to make usernames in the accounts 1 and 2 objects
 
 // Creating a function to display movements
-const displayMovemnts = function (acct) {
+const displayMovemnts = function (acct,i) {
   containerMovements.textContent = '';
   acct.movements.forEach((mov,i) => {
-    const type = mov > 0 ? `deposit` : `withdrawal`
+
+    // IMPLEMENTING THE DATE OF MOVEMENR
+    const movDate = new Date (acct.movementsDates[i]).getTime(); // TimeStamp of the movement date
+    const now = new Date().getTime(); // This is the timpstamp of this moment
+    const oneDay = 24 * 60 * 60 * 1000; // The number of millisecs in a day
+    const timeElapsed = now - movDate;
+    let date;
+    console.log(timeElapsed);
+
+    if(timeElapsed <=  oneDay) date = `Today`;
+    else if(timeElapsed <= 2 * oneDay && timeElapsed > oneDay) date = `Yesterday`;
+    else if(timeElapsed <= 7 * oneDay && timeElapsed > 2 * oneDay) date = `${Math.round(timeElapsed / (24 * 60 * 60 * 1000))} days ago`;
+    else{
+      date = Intl.DateTimeFormat().format(movDate);
+    }
+    
+    const type = mov > 0 ? `deposit` : `withdrawal` // Movement type
+
     const html = `<div class="movements__row">
           <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-          <div class="movements__date">3 days ago</div>
+          <div class="movements__date">${date}</div>
           <div class="movements__value">${mov}</div>
         </div>`;
 
         containerMovements.insertAdjacentHTML(`afterbegin`, html);
+        // console.log(now);
   });
 };
 displayMovemnts(account1)
