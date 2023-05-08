@@ -79,8 +79,16 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////
-// Myself
+// Coding this Myself
 
+/// Creating a function Usernames for all accounts in the accounts object
+const createUserName = function(acc){
+  acc.forEach((account) => {
+    account.userName = (account.owner.split(` `).map(name => name[0]).join('').toLowerCase()) 
+  })
+}
+// Calling the function to make usernames in the accounts 1 and 2 objects
+createUserName(accounts)
 
 
 
@@ -575,7 +583,7 @@ console.log(navigator);
 
 //////////////////////////////////////////////
 // Timers setTimeout and setInterval
-
+/*
 const ingrediants = [`olives`, `spinach`];
 const pizzaTimer = setTimeout(
   (ing1, ing2) =>
@@ -595,3 +603,4 @@ setInterval(() => {
     )}:${`${now.getSeconds()}`.padStart(2, 0)}`
   );
 }, 1000);
+*/
