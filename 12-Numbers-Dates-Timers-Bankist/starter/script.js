@@ -97,7 +97,21 @@ const createUserName = function (acc) {
 // Calling the function to make usernames in the accounts 1 and 2 objects
 
 // Creating a function to display movements
+const displayMovemnts = function (acct) {
+  containerMovements.textContent = '';
+  acct.movements.forEach((mov,i) => {
+    const type = mov > 0 ? `deposit` : `withdrawal`
+    const html = `<div class="movements__row">
+          <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+          <div class="movements__date">3 days ago</div>
+          <div class="movements__value">${mov}</div>
+        </div>`;
 
+        containerMovements.insertAdjacentHTML(`afterbegin`, html);
+  });
+};
+displayMovemnts(account1)
+console.log(account1.movements);
 
 // createUserName(accounts);
 
@@ -113,7 +127,6 @@ btnLogin.addEventListener(`click`, function (e) {
   const pin = +inputLoginPin.value;
 
   containerApp.style.opacity = 100;
-
 
   // Clear the input fields
   inputLoginUsername.value = inputLoginPin.value = '';
