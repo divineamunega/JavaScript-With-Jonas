@@ -97,41 +97,45 @@ const createUserName = function (acc) {
 // Calling the function to make usernames in the accounts 1 and 2 objects
 
 // Creating a function to display movements
-const displayMovemnts = function (acct,i) {
+const displayMovemnts = function (acct, i) {
   containerMovements.textContent = '';
-  acct.movements.forEach((mov,i) => {
-
+  acct.movements.forEach((mov, i) => {
     // IMPLEMENTING THE DATE OF MOVEMENR
-    const movDate = new Date (acct.movementsDates[i]).getTime(); // TimeStamp of the movement date
+    const movDate = new Date(acct.movementsDates[i]).getTime(); // TimeStamp of the movement date
     const now = new Date().getTime(); // This is the timpstamp of this moment
     const oneDay = 24 * 60 * 60 * 1000; // The number of millisecs in a day
     const timeElapsed = now - movDate;
     let date;
     console.log(timeElapsed);
 
-    if(timeElapsed <=  oneDay) date = `Today`;
-    else if(timeElapsed <= 2 * oneDay && timeElapsed > oneDay) date = `Yesterday`;
-    else if(timeElapsed <= 7 * oneDay && timeElapsed > 2 * oneDay) date = `${Math.round(timeElapsed / (24 * 60 * 60 * 1000))} days ago`;
-    else{
-      date = Intl.DateTimeFormat().format(movDate);
+    if (timeElapsed <= oneDay) date = `Today`;
+    else if (timeElapsed <= 2 * oneDay && timeElapsed > oneDay)
+      date = `Yesterday`;
+    else if (timeElapsed <= 7 * oneDay && timeElapsed > 2 * oneDay)
+      date = `${Math.round(timeElapsed / (24 * 60 * 60 * 1000))} days ago`;
+    else {
+      date = Intl.DateTimeFormat(currentAccount.locale).format(movDate);
     }
-    
-    const type = mov > 0 ? `deposit` : `withdrawal` // Movement type
+
+    const type = mov > 0 ? `deposit` : `withdrawal`; // Movement type
 
     const html = `<div class="movements__row">
-          <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
           <div class="movements__date">${date}</div>
           <div class="movements__value">${mov}</div>
         </div>`;
 
-        containerMovements.insertAdjacentHTML(`afterbegin`, html);
-        // console.log(now);
+    containerMovements.insertAdjacentHTML(`afterbegin`, html);
+    // console.log(now);
   });
 };
-displayMovemnts(account1)
+
+
 console.log(account1.movements);
 
-// createUserName(accounts);
+createUserName(accounts);
 
 let currentAccount;
 
@@ -144,7 +148,15 @@ btnLogin.addEventListener(`click`, function (e) {
   const userName = inputLoginUsername.value;
   const pin = +inputLoginPin.value;
 
-  containerApp.style.opacity = 100;
+  // Logging IN
+  currentAccount = accounts.find(acc => acc.userName === userName);
+  if(currentAccount?.pin === pin){
+    displayMovemnts(currentAccount);
+    console.log(currentAccount);
+    containerApp.style.opacity = 100;
+
+    labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`
+  }
 
   // Clear the input fields
   inputLoginUsername.value = inputLoginPin.value = '';
