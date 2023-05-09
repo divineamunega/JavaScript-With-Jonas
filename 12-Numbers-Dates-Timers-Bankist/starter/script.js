@@ -192,6 +192,28 @@ const calcDisplaySummary = function (acc) {
   labelSumInterest.textContent = formatCurrency(interest.toFixed(2), acc);
 };
 
+
+//////////////////////////////
+// Calc display balance function
+const calcDisplayBalance = function(acc){
+  const balance = acc.movements.reduce((acc, cur) => acc + cur,0);
+
+  labelBalance.textContent = formatCurrency(balance,acc);
+
+  
+}
+
+
+
+///////////////////////////////
+// Update Ui function
+
+const updateUI = function(acc){
+  displayMovemnts(acc);
+  calcDisplaySummary(acc);
+  calcDisplayBalance(acc);
+}
+
 ////////////////////////////////////////////
 ///////////////////////
 // EVENT HANDLERS
@@ -207,9 +229,7 @@ btnLogin.addEventListener(`click`, function (e) {
     console.log(currentAccount);
     containerApp.style.opacity = 100;
     labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`;
-
-    displayMovemnts(currentAccount);
-    calcDisplaySummary(currentAccount);
+    updateUI(currentAccount); 
   }
 
   // Clear the input fields
