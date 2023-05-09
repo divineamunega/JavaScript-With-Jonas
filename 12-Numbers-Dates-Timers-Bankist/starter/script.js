@@ -26,7 +26,7 @@ const account1 = {
     '2023-05-08T10:51:36.790Z',
   ],
   currency: 'EUR',
-  locale: 'pt-PT', // de-DE
+  locale: 'fr-FR', // de-DE
 };
 
 const account2 = {
@@ -49,7 +49,27 @@ const account2 = {
   locale: 'en-US',
 };
 
-const accounts = [account1, account2];
+const account3 = {
+  owner: 'Divine Amunega',
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.7,
+  pin: 3333,
+
+  movementsDates: [
+    '2019-11-01T13:15:33.035Z',
+    '2019-11-30T09:48:16.867Z',
+    '2019-12-25T06:04:23.907Z',
+    '2020-01-25T14:18:46.235Z',
+    '2020-02-05T16:33:06.386Z',
+    '2020-04-10T14:43:26.374Z',
+    '2020-06-25T18:49:59.371Z',
+    '2020-07-26T12:01:20.894Z',
+  ],
+  currency: 'NGN',
+  locale: 'en-NG',
+};
+
+const accounts = [account1, account2,account3];
 
 /////////////////////////////////////////////////
 // Elements
@@ -104,6 +124,14 @@ const sumArr = function (arr, pol) {
     return arr.filter(mov => mov < 0).reduce((acc, cur) => acc + cur, 0);
 };
 
+// Function to format currencies
+const formatCurrency = function (num, acc) {
+  return Intl.NumberFormat(acc.locale, {
+    style: `currency`,
+    currency: `${acc.currency}`,
+  }).format(num);
+};
+
 // Creating a function to display movements
 const displayMovemnts = function (acct, i) {
   containerMovements.textContent = '';
@@ -149,10 +177,19 @@ let currentAccount;
 /////////////////////////////////////
 // Calc Display Summary Functions
 const calcDisplaySummary = function (acc) {
-  const totalDeposits = sumArr(acc.movements, `+`); // For postive Values
-  const totalWithdrawals = sumArr(acc.movements, `-`); // For negative movements;
-  labelSumIn.textContent = totalDeposits.toFixed(2);
-  labelSumOut.textContent = totalWithdrawals.toFixed(2);
+  const totalDeposits = Math.abs(sumArr(acc.movements, `+`)); // For postive Values
+  const totalWithdrawals = Math.abs(sumArr(acc.movements, `-`)); // For negative movements;
+  const interest = acc.movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * acc.interestRate) / 100)
+    .filter(int => int > 1)
+    .reduce((acc, cur) => acc + cur, 0); // Calculating the Interest
+
+  labelSumIn.textContent = formatCurrency(totalDeposits.toFixed(2), acc); // Formating according to local
+
+  labelSumOut.textContent = formatCurrency(totalWithdrawals.toFixed(2), acc); // Formating according to local
+
+  labelSumInterest.textContent = formatCurrency(interest.toFixed(2), acc);
 };
 
 ////////////////////////////////////////////
