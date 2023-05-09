@@ -96,6 +96,14 @@ const createUserName = function (acc) {
 };
 // Calling the function to make usernames in the accounts 1 and 2 objects
 
+// Creating a function that adds all the elements in an array
+const sumArr = function (arr, pol) {
+  if (pol === `+`)
+    return arr.filter(mov => mov > 0).reduce((acc, cur) => acc + cur, 0);
+  if (pol === `-`)
+    return arr.filter(mov => mov < 0).reduce((acc, cur) => acc + cur, 0);
+};
+
 // Creating a function to display movements
 const displayMovemnts = function (acct, i) {
   containerMovements.textContent = '';
@@ -132,12 +140,20 @@ const displayMovemnts = function (acct, i) {
   });
 };
 
-
 console.log(account1.movements);
 
 createUserName(accounts);
 
 let currentAccount;
+
+/////////////////////////////////////
+// Calc Display Summary Functions
+const calcDisplaySummary = function (acc) {
+  const totalDeposits = sumArr(acc.movements, `+`); // For postive Values
+  const totalWithdrawals = sumArr(acc.movements, `-`); // For negative movements;
+  labelSumIn.textContent = totalDeposits.toFixed(2);
+  labelSumOut.textContent = totalWithdrawals.toFixed(2);
+};
 
 ////////////////////////////////////////////
 ///////////////////////
@@ -150,12 +166,13 @@ btnLogin.addEventListener(`click`, function (e) {
 
   // Logging IN
   currentAccount = accounts.find(acc => acc.userName === userName);
-  if(currentAccount?.pin === pin){
-    displayMovemnts(currentAccount);
+  if (currentAccount?.pin === pin) {
     console.log(currentAccount);
     containerApp.style.opacity = 100;
+    labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`;
 
-    labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`
+    displayMovemnts(currentAccount);
+    calcDisplaySummary(currentAccount);
   }
 
   // Clear the input fields
