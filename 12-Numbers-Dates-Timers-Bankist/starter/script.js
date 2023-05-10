@@ -69,7 +69,7 @@ const account3 = {
   locale: 'en-NG',
 };
 
-const accounts = [account1, account2,account3];
+const accounts = [account1, account2, account3];
 
 /////////////////////////////////////////////////
 // Elements
@@ -133,7 +133,7 @@ const formatCurrency = function (num, acc) {
 };
 
 // Creating a function to display movements
-const displayMovemnts = function (acct, i) {
+const displayMovemnts = function (acct, sorted = true) {
   containerMovements.textContent = '';
   acct.movements.forEach((mov, i) => {
     // IMPLEMENTING THE DATE OF MOVEMENR
@@ -142,7 +142,9 @@ const displayMovemnts = function (acct, i) {
     const oneDay = 24 * 60 * 60 * 1000; // The number of millisecs in a day
     const timeElapsed = now - movDate;
     let date;
-    console.log(timeElapsed);
+    const sortArr = arr => {
+      sorted || arr.sort((a, b) => a - b);
+    };
 
     if (timeElapsed <= oneDay) date = `Today`;
     else if (timeElapsed <= 2 * oneDay && timeElapsed > oneDay)
@@ -154,7 +156,7 @@ const displayMovemnts = function (acct, i) {
     }
 
     const type = mov > 0 ? `deposit` : `withdrawal`; // Movement type
-
+    sortArr(mov);
     const html = `<div class="movements__row">
           <div class="movements__type movements__type--${type}">${
       i + 1
@@ -192,27 +194,22 @@ const calcDisplaySummary = function (acc) {
   labelSumInterest.textContent = formatCurrency(interest.toFixed(2), acc);
 };
 
-
 //////////////////////////////
 // Calc display balance function
-const calcDisplayBalance = function(acc){
-  const balance = acc.movements.reduce((acc, cur) => acc + cur,0);
+const calcDisplayBalance = function (acc) {
+  const balance = acc.movements.reduce((acc, cur) => acc + cur, 0);
 
-  labelBalance.textContent = formatCurrency(balance,acc);
-
-  
-}
-
-
+  labelBalance.textContent = formatCurrency(balance, acc);
+};
 
 ///////////////////////////////
 // Update Ui function
 
-const updateUI = function(acc){
+const updateUI = function (acc) {
   displayMovemnts(acc);
   calcDisplaySummary(acc);
   calcDisplayBalance(acc);
-}
+};
 
 ////////////////////////////////////////////
 ///////////////////////
@@ -229,13 +226,35 @@ btnLogin.addEventListener(`click`, function (e) {
     console.log(currentAccount);
     containerApp.style.opacity = 100;
     labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`;
-    updateUI(currentAccount); 
+    updateUI(currentAccount);
   }
 
   // Clear the input fields
   inputLoginUsername.value = inputLoginPin.value = '';
   inputLoginUsername.blur();
   inputLoginPin.blur();
+});
+
+////////////////////////////
+// Transfer Money
+btnTransfer.addEventListener(`click`, function (e) {
+  e.preventDefault();
+
+  const recipientUserName = inputTransferTo.value;
+  const transfer = +inputTransferAmount.value;
+  const balance = currentAccount.movements.reduce((a,b) => a + b,0);
+  const recipient = accounts.find(acc => acc.userName === recipientUserName);
+
+  if (transfer > 0 && transfer < balance && recipient && recipient.userName !== currentAccount.userName) {
+    currentAccount.movements.push(-transfer);
+    recipient?.movements.push(transfer);
+    currentAccount.movementsDates.push(new Date());
+    recipient?.movementsDates.push(new Date());
+    updateUI(currentAccount);
+  }
+  inputTransferAmount.value = inputTransferTo.value  = ``;
+  inputTransferTo.blur();
+  inputTransferAmount.blur();
 });
 
 /////////////////////////////////////////////////
