@@ -223,9 +223,8 @@ btnLogin.addEventListener(`click`, function (e) {
 
   // Logging IN
   currentAccount = accounts.find(acc => acc.userName === userName);
-  balance = currentAccount.movements.reduce((a, b) => a + b, 0);
   if (currentAccount?.pin === pin) {
-    console.log(currentAccount);
+    balance = currentAccount.movements.reduce((a, b) => a + b, 0);
     containerApp.style.opacity = 100;
     labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`;
     updateUI(currentAccount);
@@ -273,11 +272,28 @@ btnLoan.addEventListener(`click`, function (e) {
     if (loanAmount < 10 * balance && loanAmount >= 1) {
       currentAccount.movements.push(+loanAmount);
       console.log(new Date().toISOString());
+      console.log('Mhizta Orlah doins');
       currentAccount.movementsDates.push(new Date());
       updateUI(currentAccount);
     }
   }, 2500);
   inputLoanAmount.value = ``;
+});
+
+btnClose.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  const acctName = inputCloseUsername.value;
+  const acctPin = +inputClosePin.value;
+
+  if (acctName === currentAccount.userName && acctPin === currentAccount.pin) {
+    accounts.splice(
+      accounts.findIndex(acc => acc.userName === acctName),
+      accounts.findIndex(acc => acc.userName === acctName) + 1
+    );
+    inputCloseUsername.value = inputClosePin.value = ``;
+    containerApp.style.opacity = 0;
+    labelWelcome.textContent = `Log in to get started`;
+  }
 });
 
 /////////////////////////////////////////////////
