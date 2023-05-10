@@ -175,6 +175,7 @@ console.log(account1.movements);
 createUserName(accounts);
 
 let currentAccount;
+let balance;
 
 /////////////////////////////////////
 // Calc Display Summary Functions
@@ -197,7 +198,7 @@ const calcDisplaySummary = function (acc) {
 //////////////////////////////
 // Calc display balance function
 const calcDisplayBalance = function (acc) {
-  const balance = acc.movements.reduce((acc, cur) => acc + cur, 0);
+  balance = acc.movements.reduce((acc, cur) => acc + cur, 0);
 
   labelBalance.textContent = formatCurrency(balance, acc);
 };
@@ -222,6 +223,7 @@ btnLogin.addEventListener(`click`, function (e) {
 
   // Logging IN
   currentAccount = accounts.find(acc => acc.userName === userName);
+  balance = currentAccount.movements.reduce((a, b) => a + b, 0);
   if (currentAccount?.pin === pin) {
     console.log(currentAccount);
     containerApp.style.opacity = 100;
@@ -242,19 +244,40 @@ btnTransfer.addEventListener(`click`, function (e) {
 
   const recipientUserName = inputTransferTo.value;
   const transfer = +inputTransferAmount.value;
-  const balance = currentAccount.movements.reduce((a,b) => a + b,0);
   const recipient = accounts.find(acc => acc.userName === recipientUserName);
 
-  if (transfer > 0 && transfer < balance && recipient && recipient.userName !== currentAccount.userName) {
+  if (
+    transfer > 1 &&
+    transfer <= balance &&
+    recipient &&
+    recipient.userName !== currentAccount.userName
+  ) {
     currentAccount.movements.push(-transfer);
     recipient?.movements.push(transfer);
-    currentAccount.movementsDates.push(new Date());
-    recipient?.movementsDates.push(new Date());
+    currentAccount.movementsDates.push(new Date().toISOString());
+    recipient?.movementsDates.push(new Date().toISOString());
     updateUI(currentAccount);
   }
-  inputTransferAmount.value = inputTransferTo.value  = ``;
+  inputTransferAmount.value = inputTransferTo.value = ``;
   inputTransferTo.blur();
   inputTransferAmount.blur();
+});
+
+///////////////////////////////////////////////
+// Loan Money
+
+btnLoan.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  const loanAmount = +inputLoanAmount.value;
+  setTimeout(() => {
+    if (loanAmount < 10 * balance && loanAmount >= 1) {
+      currentAccount.movements.push(+loanAmount);
+      console.log(new Date().toISOString());
+      currentAccount.movementsDates.push(new Date());
+      updateUI(currentAccount);
+    }
+  }, 2500);
+  inputLoanAmount.value = ``;
 });
 
 /////////////////////////////////////////////////
