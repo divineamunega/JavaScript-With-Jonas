@@ -132,9 +132,22 @@ const formatCurrency = function (num, acc) {
   }).format(num);
 };
 
+// Function to sort array
+const sortArr = arr => {
+  arr.sort((a, b) => a - b);
+};
+
 // Creating a function to display movements
-const displayMovemnts = function (acct, sorted = true) {
+let sorted = true;
+
+const displayMovemnts = function (acct, sorted = false) {
   containerMovements.textContent = '';
+  if (sorted === true) {
+    sortArr(acct.movements);
+  } else {
+    acct.movements = [...originalMovArr];
+  }
+
   acct.movements.forEach((mov, i) => {
     // IMPLEMENTING THE DATE OF MOVEMENR
     const movDate = new Date(acct.movementsDates[i]).getTime(); // TimeStamp of the movement date
@@ -142,9 +155,6 @@ const displayMovemnts = function (acct, sorted = true) {
     const oneDay = 24 * 60 * 60 * 1000; // The number of millisecs in a day
     const timeElapsed = now - movDate;
     let date;
-    const sortArr = arr => {
-      sorted || arr.sort((a, b) => a - b);
-    };
 
     if (timeElapsed <= oneDay) date = `Today`;
     else if (timeElapsed <= 2 * oneDay && timeElapsed > oneDay)
@@ -156,11 +166,8 @@ const displayMovemnts = function (acct, sorted = true) {
     }
 
     const type = mov > 0 ? `deposit` : `withdrawal`; // Movement type
-    sortArr(mov);
     const html = `<div class="movements__row">
-          <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
+    <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
           <div class="movements__date">${date}</div>
           <div class="movements__value">${mov}</div>
         </div>`;
@@ -176,6 +183,7 @@ createUserName(accounts);
 
 let currentAccount;
 let balance;
+let originalMovArr;
 
 /////////////////////////////////////
 // Calc Display Summary Functions
@@ -185,7 +193,7 @@ const calcDisplaySummary = function (acc) {
   const interest = acc.movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * acc.interestRate) / 100)
-    .filter(int => int > 1)
+    .filter(int => int >= 1)
     .reduce((acc, cur) => acc + cur, 0); // Calculating the Interest
 
   labelSumIn.textContent = formatCurrency(totalDeposits.toFixed(2), acc); // Formating according to local
@@ -215,6 +223,7 @@ const updateUI = function (acc) {
 ////////////////////////////////////////////
 ///////////////////////
 // EVENT HANDLERS
+let ticking = true;
 btnLogin.addEventListener(`click`, function (e) {
   e.preventDefault();
   // Collecting the pin and UserName
@@ -224,6 +233,8 @@ btnLogin.addEventListener(`click`, function (e) {
   // Logging IN
   currentAccount = accounts.find(acc => acc.userName === userName);
   if (currentAccount?.pin === pin) {
+    originalMovArr = currentAccount.movements;
+    console.log(originalMovArr);
     balance = currentAccount.movements.reduce((a, b) => a + b, 0);
     containerApp.style.opacity = 100;
     labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`;
@@ -234,6 +245,23 @@ btnLogin.addEventListener(`click`, function (e) {
   inputLoginUsername.value = inputLoginPin.value = '';
   inputLoginUsername.blur();
   inputLoginPin.blur();
+
+
+ let time = 10;
+ const tick = function () {
+   labelTimer.textContent = `${Math.floor(time / 60)}:${time % 60}`;
+   if (time === 0) {
+     clearInterval();
+     containerApp.style.opacity = 0;
+     labelWelcome.textContent = `Log in to get started`;
+   }
+   time--;
+ };
+ if(ticking){
+   tick();
+   setInterval(tick, 1000);
+ }
+ 
 });
 
 ////////////////////////////
@@ -295,6 +323,14 @@ btnClose.addEventListener(`click`, function (e) {
     labelWelcome.textContent = `Log in to get started`;
   }
 });
+
+btnSort.addEventListener(`click`, function () {
+  displayMovemnts(currentAccount, sorted);
+  sorted = !sorted;
+});
+
+// const deposits = accounts.flatMap(acc => acc.movements).filter(mov => mov > 0);
+// console.log(deposits);
 
 /////////////////////////////////////////////////
 // Functions
