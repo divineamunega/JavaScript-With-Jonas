@@ -30,16 +30,32 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-
 console.log(document.documentElement);
 // document.documentElement.style.backgroundColor = `blue`;
 console.log(document.body);
-console.log(document.head);
+const header = document.querySelector(`header`);
 
-document.querySelector(`.header`)
+document.querySelector(`.header`);
 const allSection = document.querySelectorAll(`.section`);
 console.log(allSection);
 
 document.getElementById(`#section--1`);
 const allButtons = document.getElementsByTagName(`button`);
 console.log(allButtons);
+
+console.log(document.getElementsByClassName(`btn`));
+
+const message = document.createElement(`div`);
+message.classList.add(`cookie-message`);
+// message.textContent = `We use cookies for improved functionalities and analytics.`;
+message.innerHTML = `We use cookies for improved functionalities and analytics. <button class='btn btn--close-cookie'>Got It</button>`;
+// header.prepend(message);
+// header.append(message);
+
+// header.append(message.cloneNode(true)); 
+
+// header.before(message);
+header.after(message);
+document.querySelector(`.btn--close-cookie`).addEventListener(`click`, function(){
+  message.remove();
+})
