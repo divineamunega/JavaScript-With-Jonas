@@ -29,3 +29,17 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+
+console.log(document.documentElement);
+// document.documentElement.style.backgroundColor = `blue`;
+console.log(document.body);
+console.log(document.head);
+
+document.querySelector(`.header`)
+const allSection = document.querySelectorAll(`.section`);
+console.log(allSection);
+
+document.getElementById(`#section--1`);
+const allButtons = document.getElementsByTagName(`button`);
+console.log(allButtons);
