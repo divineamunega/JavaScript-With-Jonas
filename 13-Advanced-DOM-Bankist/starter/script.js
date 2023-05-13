@@ -138,5 +138,27 @@ btnScrollTo.addEventListener(`click`, function (e) {
   //   behavior: `smooth`
   // });
 
-section1.scrollIntoView({behavior:`smooth`})
+  section1.scrollIntoView({ behavior: `smooth` });
 });
+
+//////////////////////////////////
+// addEventListenerconst
+
+const h1 = document.querySelector(`h1`);
+
+const alerth1 = function (e) {
+  alert(
+    `addEventListener: Great! You are reading the heading :D ${this.textContent}`
+  );
+
+  h1.removeEventListener(`mouseenter`, alerth1)
+};
+
+h1.addEventListener(`mouseenter`,alerth1);
+
+
+// h1.onmouseenter = function (e) {
+//   alert(
+//     `addEventListener: Great! You are reading the heading :D ${this.textContent}`
+//   );
+// };
