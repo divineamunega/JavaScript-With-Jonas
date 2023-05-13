@@ -142,13 +142,14 @@ btnScrollTo.addEventListener(`click`, function (e) {
 });
 
 //////////////////////////////////
-// addEventListenerconst
+// Types of Events and event handlers
 
+/*
 const h1 = document.querySelector(`h1`);
 
 const alerth1 = function (e) {
   alert(
-    `addEventListener: Great! You are reading the heading :D ${this.textContent}`
+    `addEventListener: Great! You are reading the heading :D`
   );
 
   h1.removeEventListener(`mouseenter`, alerth1)
@@ -162,3 +163,6 @@ h1.addEventListener(`mouseenter`,alerth1);
 //     `addEventListener: Great! You are reading the heading :D ${this.textContent}`
 //   );
 // };
+*/
+
+
