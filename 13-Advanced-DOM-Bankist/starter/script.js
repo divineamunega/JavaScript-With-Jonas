@@ -165,4 +165,31 @@ h1.addEventListener(`mouseenter`,alerth1);
 // };
 */
 
+// rgb(255,255,255)
 
+//////////////////////////////////////////////////////
+// Event Capturing and Bubling
+const randomInt = (min, max) => {
+  const random = Math.random() * (max - min + 1) + min;
+  return Math.floor(random);
+};
+
+const randomColor = () =>
+  `rgba(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0,10)})`;
+console.log(randomColor());
+
+document.querySelector(`.nav__link`).addEventListener(`click`, function(e) {
+  this.style.backgroundColor = randomColor();
+  console.log(`Link`, e.target);
+  // e.stopPropagation()
+});
+
+document.querySelector(`.nav__links`).addEventListener(`click`, function(e) {
+  this.style.backgroundColor = randomColor();
+  console.log(`Nav_container`, e.target);
+});
+
+document.querySelector(`.nav`).addEventListener(`click`, function(e) {
+  this.style.backgroundColor = randomColor();
+  console.log(`Navbar`, e.target);
+});
