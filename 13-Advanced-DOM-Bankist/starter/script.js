@@ -30,6 +30,9 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+//////////////////////////////
+// Creating Selecting and deleting elements
+/*
 console.log(document.documentElement);
 // document.documentElement.style.backgroundColor = `blue`;
 console.log(document.body);
@@ -52,29 +55,36 @@ message.innerHTML = `We use cookies for improved functionalities and analytics. 
 // header.prepend(message);
 // header.append(message);
 
-// header.append(message.cloneNode(true)); 
+// header.append(message.cloneNode(true));
 
 // header.before(message);
+*/
+
+////////////////////////////////////////
+// Set Attriibutes and Styles
+/*
 header.after(message);
-document.querySelector(`.btn--close-cookie`).addEventListener(`click`, function(){
-  message.remove();
-})
+document
+  .querySelector(`.btn--close-cookie`)
+  .addEventListener(`click`, function () {
+    message.remove();
+  });
 
 // Styles
-message.style.backgroundColor  = `#37383d`;
+message.style.backgroundColor = `#37383d`;
 message.style.width = `100%`;
 
 console.log(message.style.height);
 
 console.log(getComputedStyle(message).color);
 
-message.style.height = Number.parseFloat(getComputedStyle(message).height,10) + 30 + `px`;    
- 
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + `px`;
+
 document.documentElement.style.setProperty(`--color-primary`, `orangered`);
 
-
 // Atributes
-const logo =  document.querySelector(`.nav__logo`);
+const logo = document.querySelector(`.nav__logo`);
 console.log(logo.alt);
 console.log(logo.className);
 console.log(logo.getAttribute(`designer`));
@@ -84,19 +94,49 @@ logo.setAttribute(`company`, `Bankist`);
 console.log(logo.src);
 console.log(logo.getAttribute(`src`));
 
-const link =  document.querySelector(`.nav__link--btn`);
+const link = document.querySelector(`.nav__link--btn`);
 console.log(link.href);
 console.log(link.getAttribute(`href`));
 
 // Data Attributes
-console.log(logo.dataset.versionNumber)
+console.log(logo.dataset.versionNumber);
 
 // Classes
-logo.classList.add(`c`,`j`);
-logo.classList.remove(`c`,`j`);
+logo.classList.add(`c`, `j`);
+logo.classList.remove(`c`, `j`);
 logo.classList.toggle(`c`);
 logo.classList.contains(`c`); // Not Includes
 
-
-// Dont use 
+// Dont use
 logo.className = `Jonas`;
+*/
+// section--1 btn--scroll-to
+
+const btnScrollTo = document.querySelector(`.btn--scroll-to`);
+btnScrollTo.addEventListener(`click`, function (e) {
+  const section1 = document.querySelector(`#section--1`);
+  const s1coords = section1.getBoundingClientRect();
+  // console.log(section1.clie);
+  // console.log(this.getBoundingClientRect());
+  // console.log(s1coords);
+  // console.log(window.scrollY);
+  // console.log(window.pageYOffset);
+
+  // console.log(`Current scroll (X/Y)`, window.scrollX, scrollY);
+
+  // console.log(
+  //   `ViewPort Height / Viewpoert Width`,
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
+
+  // Scrolling
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.scrollX,
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: `smooth`
+  // });
+
+section1.scrollIntoView({behavior:`smooth`})
+});
