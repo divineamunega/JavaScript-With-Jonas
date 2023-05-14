@@ -1,21 +1,22 @@
 'use strict';
-
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector(`.btn--scroll-to`);
 
+///////////////////////////////////////
+// Modal window
 const openModal = function () {
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
+  document.documentElement.style.overflow = 'hidden';
 };
 
 const closeModal = function () {
   modal.classList.add('hidden');
   overlay.classList.add('hidden');
+  document.documentElement.style.overflow = 'auto';
 };
 
 for (let i = 0; i < btnsOpenModal.length; i++)
@@ -28,7 +29,39 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
   }
+}); 
+
+///////////////////////////////
+// Button Scrolling 
+
+btnScrollTo.addEventListener(`click`, function (e) {
+  const section1 = document.querySelector(`#section--1`);
+  const s1coords = section1.getBoundingClientRect();
+  section1.scrollIntoView({ behavior: `smooth` });
 });
+
+
+///////////////////////////////////
+// Page Navigation
+
+// document.querySelectorAll(`.nav__link`).forEach((el)=>{
+//   el.addEventListener(`click`,function(e){
+//     e.preventDefault();
+//     const id = this.getAttribute(`href`);
+//     document.querySelector(id).scrollIntoView({behavior:`smooth`}) 
+//   })
+// })
+
+// 1. Add eventListener to common parent elements
+// 2. Determine the element where that event originated
+document.querySelector(`.nav__links`).addEventListener(`click`,function(e){
+  e.preventDefault()
+  // Matching Strategy
+  if(e.target.classList.contains(`nav__scroll`)){
+    const id = e.target.getAttribute(`href`);
+    document.querySelector(id).scrollIntoView({behavior:`smooth`}) 
+  }
+})
 
 //////////////////////////////
 // Creating Selecting and deleting elements
@@ -112,7 +145,7 @@ logo.className = `Jonas`;
 */
 // section--1 btn--scroll-to
 
-const btnScrollTo = document.querySelector(`.btn--scroll-to`);
+/*const btnScrollTo = document.querySelector(`.btn--scroll-to`);
 btnScrollTo.addEventListener(`click`, function (e) {
   const section1 = document.querySelector(`#section--1`);
   const s1coords = section1.getBoundingClientRect();
@@ -139,7 +172,7 @@ btnScrollTo.addEventListener(`click`, function (e) {
   // });
 
   section1.scrollIntoView({ behavior: `smooth` });
-});
+});*/
 
 //////////////////////////////////
 // Types of Events and event handlers
@@ -169,6 +202,7 @@ h1.addEventListener(`mouseenter`,alerth1);
 
 //////////////////////////////////////////////////////
 // Event Capturing and Bubling
+/*
 const randomInt = (min, max) => {
   const random = Math.random() * (max - min + 1) + min;
   return Math.floor(random);
@@ -181,7 +215,7 @@ console.log(randomColor());
 document.querySelector(`.nav__link`).addEventListener(`click`, function(e) {
   this.style.backgroundColor = randomColor();
   console.log(`Link`, e.target);
-  // e.stopPropagation()
+  // e.stopPropagation();
 });
 
 document.querySelector(`.nav__links`).addEventListener(`click`, function(e) {
@@ -192,4 +226,8 @@ document.querySelector(`.nav__links`).addEventListener(`click`, function(e) {
 document.querySelector(`.nav`).addEventListener(`click`, function(e) {
   this.style.backgroundColor = randomColor();
   console.log(`Navbar`, e.target);
-});
+});*/
+
+
+/////////////////////////////////////////
+
