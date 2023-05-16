@@ -29,17 +29,16 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
   }
-}); 
+});
 
 ///////////////////////////////
-// Button Scrolling 
+// Button Scrolling
 
 btnScrollTo.addEventListener(`click`, function (e) {
   const section1 = document.querySelector(`#section--1`);
   const s1coords = section1.getBoundingClientRect();
   section1.scrollIntoView({ behavior: `smooth` });
 });
-
 
 ///////////////////////////////////
 // Page Navigation
@@ -48,21 +47,44 @@ btnScrollTo.addEventListener(`click`, function (e) {
 //   el.addEventListener(`click`,function(e){
 //     e.preventDefault();
 //     const id = this.getAttribute(`href`);
-//     document.querySelector(id).scrollIntoView({behavior:`smooth`}) 
+//     document.querySelector(id).scrollIntoView({behavior:`smooth`})
 //   })
 // })
 
 // 1. Add eventListener to common parent elements
 // 2. Determine the element where that event originated
-document.querySelector(`.nav__links`).addEventListener(`click`,function(e){
-  e.preventDefault()
-  // Matching Strategy
-  if(e.target.classList.contains(`nav__scroll`)){
-    const id = e.target.getAttribute(`href`);
-    document.querySelector(id).scrollIntoView({behavior:`smooth`}) 
-  }
-})
+document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
+  e.preventDefault();
 
+  // Matching Strategy
+  if (e.target.classList.contains(`nav__scroll`)) {
+    const id = e.target.getAttribute(`href`);
+    document.querySelector(id).scrollIntoView({ behavior: `smooth` });
+  }
+});
+
+// Tabbed Components
+const tabs = document.querySelectorAll(`.operations__tab`);
+const tabContainer = document.querySelector(`.operations__tab-container`);
+const tabsContent  = document.querySelectorAll(`.operations__content`);
+
+// Event Delegation
+tabContainer.addEventListener(`click`, function(e){
+  const clicked = e.target.closest(`button`);
+
+  // Guard Clause
+  if(!clicked) return;
+
+  tabs.forEach(tab => tab.classList.remove(`operations__tab--active`));
+  clicked.classList.add(`operations__tab--active`);
+
+
+  // Activate content area
+  tabsContent.forEach(tabcontent => tabcontent.classList.remove(`operations__content--active`));
+  document
+    .querySelector(`.operations__content--${+clicked.dataset.tab}`)
+    .classList.add(`operations__content--active`);
+})
 //////////////////////////////
 // Creating Selecting and deleting elements
 /*
@@ -227,7 +249,6 @@ document.querySelector(`.nav`).addEventListener(`click`, function(e) {
   this.style.backgroundColor = randomColor();
   console.log(`Navbar`, e.target);
 });*/
-
 
 /////////////////////////////////////////
 
