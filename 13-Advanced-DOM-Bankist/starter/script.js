@@ -1,9 +1,13 @@
 'use strict';
+const nav = document.querySelector(`.nav`);
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector(`.btn--scroll-to`);
+const tabs = document.querySelectorAll(`.operations__tab`);
+const tabContainer = document.querySelector(`.operations__tab-container`);
+const tabsContent = document.querySelectorAll(`.operations__content`);
 
 ///////////////////////////////////////
 // Modal window
@@ -64,27 +68,46 @@ document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
 });
 
 // Tabbed Components
-const tabs = document.querySelectorAll(`.operations__tab`);
-const tabContainer = document.querySelector(`.operations__tab-container`);
-const tabsContent  = document.querySelectorAll(`.operations__content`);
-
-// Event Delegation
-tabContainer.addEventListener(`click`, function(e){
+tabContainer.addEventListener(`click`, function (e) {
   const clicked = e.target.closest(`button`);
 
   // Guard Clause
-  if(!clicked) return;
+  if (!clicked) return;
 
   tabs.forEach(tab => tab.classList.remove(`operations__tab--active`));
   clicked.classList.add(`operations__tab--active`);
 
-
   // Activate content area
-  tabsContent.forEach(tabcontent => tabcontent.classList.remove(`operations__content--active`));
+  tabsContent.forEach(tabcontent =>
+    tabcontent.classList.remove(`operations__content--active`)
+  );
   document
     .querySelector(`.operations__content--${+clicked.dataset.tab}`)
     .classList.add(`operations__content--active`);
-})
+});
+
+const handleHover = function (e) {
+  if (e.target.classList.contains(`nav__link`)) {
+    const link = e.target;
+    const siblings = link.closest(`.nav`).querySelectorAll(`.nav__link`);
+    const logo = link.closest(`.nav`).querySelector(`img`);
+
+    siblings.forEach(sib => {
+      if (sib !== link) {
+        sib.style.opacity = this;
+      }
+    });
+
+    logo.style.opacity = this;
+  }
+};
+
+// Menu Fade Animation
+nav.addEventListener(`mouseover`,handleHover.bind(0.5)); 
+nav.addEventListener(`mouseout`, handleHover.bind(1.0));
+
+
+
 //////////////////////////////
 // Creating Selecting and deleting elements
 /*
