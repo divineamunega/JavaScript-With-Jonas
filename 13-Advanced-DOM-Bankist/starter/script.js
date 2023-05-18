@@ -131,22 +131,47 @@ const sectionOptions = {
   threshold: 0.15,
 };
 
-const sectionCallback = function (entries,observer) {
+const sectionCallback = function (entries, observer) {
   entries.forEach(ent => {
-    console.log(ent);
-    if(!ent.isIntersecting) return;
+    if (!ent.isIntersecting) return;
     ent.target.classList.remove(`section--hidden`);
     observer.unobserve(ent.target);
   });
 };
-const sectionObserver = new IntersectionObserver(sectionCallback, sectionOptions);
+const sectionObserver = new IntersectionObserver(
+  sectionCallback,
+  sectionOptions
+);
 const allSections = document.querySelectorAll(`section`);
-  
+
 allSections.forEach(section => {
   section.classList.add(`section--hidden`);
   sectionObserver.observe(section);
 });
 
+// Lazy Loading Images
+const allLazyImages = document
+  .querySelector(`#section--1`)
+  .querySelectorAll(`.features__img`);
+
+const lazyLoad = function (entries, observer) {
+  const [ent] = entries;
+  console.log(ent);
+  if (!ent.isIntersecting) return;
+  ent.target.src = ent.target.dataset.src;
+  ent.target.addEventListener(`load`, function () {
+    ent.target.classList.remove(`lazy-img`);
+  });
+  observer.unobserve(ent.target);
+};
+
+const lazyImgObserver = new IntersectionObserver(lazyLoad, {
+  root: null,
+  threshold: 0.8,
+  rootMargin:`200px`,
+});
+
+allLazyImages.forEach(lazyImg => lazyImgObserver.observe(lazyImg));
 /*
 // Sticky Navigation
 const initialCoords = section1.getBoundingClientRect();
