@@ -168,10 +168,18 @@ const lazyLoad = function (entries, observer) {
 const lazyImgObserver = new IntersectionObserver(lazyLoad, {
   root: null,
   threshold: 0.8,
-  rootMargin:`200px`,
+  rootMargin: `200px`,
 });
 
 allLazyImages.forEach(lazyImg => lazyImgObserver.observe(lazyImg));
+
+// Slider Components
+const slider = document.querySelector(`.slider`);
+const slides = document.querySelectorAll(`.slide`);
+slider.addEventListener(`click`, function (e) {
+  
+});
+
 /*
 // Sticky Navigation
 const initialCoords = section1.getBoundingClientRect();
@@ -191,7 +199,7 @@ console.log(document.documentElement);
 // document.documentElement.style.backgroundColor = `blue`;
 console.log(document.body);
 const header = document.querySelector(`header`);
-
+ 
 document.querySelector(`.header`);
 const allSection = document.querySelectorAll(`.section`);
 console.log(allSection);
