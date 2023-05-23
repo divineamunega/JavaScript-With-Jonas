@@ -173,12 +173,39 @@ const lazyImgObserver = new IntersectionObserver(lazyLoad, {
 
 allLazyImages.forEach(lazyImg => lazyImgObserver.observe(lazyImg));
 
-// Slider Components
+// Slider Component
 const slider = document.querySelector(`.slider`);
+const btnLeft = document.querySelector(`.slider__btn--left`);
+const btnRight = document.querySelector(`.slider__btn--right`);
 const slides = document.querySelectorAll(`.slide`);
-slider.addEventListener(`click`, function (e) {
-  
+
+let currSlide = 0;
+const maxSlide = slides.length;
+
+// slider.style.transform = `scale(0.4) translateX(-1100px)`;
+// slider.style.overflow = `visible`;
+
+slides.forEach((slide, i) => {
+  slide.style.transform = `translateX(${i * 100}%)`;
 });
+
+const gotoSlide = function(slide){
+ slides.forEach((s, i) => {
+   s.style.transform = `translateX(${[i - slide] * 100}%)`;
+ });
+}
+gotoSlide(0);
+// Next Slide
+btnRight.addEventListener(`click`, function () {
+  currSlide = currSlide === maxSlide - 1 ? 0 : currSlide + 1;
+  gotoSlide(currSlide);
+});
+
+btnLeft.addEventListener(`click`, function () {
+  currSlide = currSlide === 0 ? maxSlide - 1 : currSlide - 1;
+  gotoSlide(currSlide);
+});
+
 
 /*
 // Sticky Navigation
