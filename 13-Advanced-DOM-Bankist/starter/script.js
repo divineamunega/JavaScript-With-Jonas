@@ -195,18 +195,27 @@ const gotoSlide = function(slide){
  });
 }
 gotoSlide(0);
+
 // Next Slide
-btnRight.addEventListener(`click`, function () {
+const nextSlide = function(){
   currSlide = currSlide === maxSlide - 1 ? 0 : currSlide + 1;
   gotoSlide(currSlide);
-});
+}
 
-btnLeft.addEventListener(`click`, function () {
+// Previous Slide 
+const prevSlide = function(){
   currSlide = currSlide === 0 ? maxSlide - 1 : currSlide - 1;
   gotoSlide(currSlide);
-});
+}
 
+btnRight.addEventListener(`click`, nextSlide);
 
+btnLeft.addEventListener(`click`,prevSlide);
+
+document.addEventListener(`keydown`, function(e){
+  e.key === `ArrowRight` && nextSlide();
+  e.key === `ArrowLeft` && prevSlide();
+})
 /*
 // Sticky Navigation
 const initialCoords = section1.getBoundingClientRect();
@@ -433,3 +442,18 @@ const observer = new IntersectionObserver(observerCallback, obsOptions);
 observer.observe(``)
 */
 // console.log(observer);
+
+
+
+// const addNumber = num =>{
+//   const strArr = `${num}`.split('');
+//   const numArr = [];
+//   let acc = 0;
+//   for( const [i,num] of strArr.entries()){
+//     numArr.push(+num);
+//     acc = acc + numArr[i];
+//   }
+//   return acc;
+// }
+
+// console.log(addNumber(1002));
