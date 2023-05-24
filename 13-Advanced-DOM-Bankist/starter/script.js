@@ -156,7 +156,6 @@ const allLazyImages = document
 
 const lazyLoad = function (entries, observer) {
   const [ent] = entries;
-  console.log(ent);
   if (!ent.isIntersecting) return;
   ent.target.src = ent.target.dataset.src;
   ent.target.addEventListener(`load`, function () {
@@ -485,3 +484,18 @@ observer.observe(``)
 // }
 
 // console.log(addNumber(1002));
+
+/*
+document.addEventListener(`DOMContentLoaded`, function(e){
+  console.log(`Dom event loaded`,e);
+})
+
+window.addEventListener(`load`, function(e){
+  console.log(`page fully loaded`,e);
+})
+*/
+// window.addEventListener(`beforeunload`,function(e){
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = ``;
+// })
