@@ -174,48 +174,78 @@ const lazyImgObserver = new IntersectionObserver(lazyLoad, {
 allLazyImages.forEach(lazyImg => lazyImgObserver.observe(lazyImg));
 
 // Slider Component
-const slider = document.querySelector(`.slider`);
-const btnLeft = document.querySelector(`.slider__btn--left`);
-const btnRight = document.querySelector(`.slider__btn--right`);
-const slides = document.querySelectorAll(`.slide`);
+const slider = function () {
+  const btnLeft = document.querySelector(`.slider__btn--left`);
+  const btnRight = document.querySelector(`.slider__btn--right`);
+  const slides = document.querySelectorAll(`.slide`);
+  const dotContainer = document.querySelector(`.dots`);
 
-let currSlide = 0;
-const maxSlide = slides.length;
+  let currSlide = 0;
+  const maxSlide = slides.length;
 
-// slider.style.transform = `scale(0.4) translateX(-1100px)`;
-// slider.style.overflow = `visible`;
+  // Functions
+  const createDots = function () {
+    slides.forEach((_, i) => {
+      dotContainer.insertAdjacentHTML(
+        `beforeend`,
+        `<button class="dots__dot" data-slide="${i}"></button>`
+      );
+    });
+  };
 
-slides.forEach((slide, i) => {
-  slide.style.transform = `translateX(${i * 100}%)`;
-});
+  const activateDot = function (slide) {
+    const dots = document.querySelectorAll(`.dots__dot`);
+    dots.forEach(dot => dot.classList.remove(`dots__dot--active`));
 
-const gotoSlide = function(slide){
- slides.forEach((s, i) => {
-   s.style.transform = `translateX(${[i - slide] * 100}%)`;
- });
-}
-gotoSlide(0);
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add(`dots__dot--active`);
+  };
 
-// Next Slide
-const nextSlide = function(){
-  currSlide = currSlide === maxSlide - 1 ? 0 : currSlide + 1;
-  gotoSlide(currSlide);
-}
+  const gotoSlide = function (slide) {
+    slides.forEach((s, i) => {
+      s.style.transform = `translateX(${[i - slide] * 100}%)`;
+    });
+    activateDot(slide);
+  };
 
-// Previous Slide 
-const prevSlide = function(){
-  currSlide = currSlide === 0 ? maxSlide - 1 : currSlide - 1;
-  gotoSlide(currSlide);
-}
+  // Next Slide
+  const nextSlide = function () {
+    currSlide = currSlide === maxSlide - 1 ? 0 : currSlide + 1;
+    gotoSlide(currSlide);
+  };
 
-btnRight.addEventListener(`click`, nextSlide);
+  // Previous Slide
+  const prevSlide = function () {
+    currSlide = currSlide === 0 ? maxSlide - 1 : currSlide - 1;
+    gotoSlide(currSlide);
+  };
 
-btnLeft.addEventListener(`click`,prevSlide);
+  const init = function () {
+    createDots();
+    gotoSlide(0);
+  };
+  init();
 
-document.addEventListener(`keydown`, function(e){
-  e.key === `ArrowRight` && nextSlide();
-  e.key === `ArrowLeft` && prevSlide();
-})
+  btnRight.addEventListener(`click`, nextSlide);
+
+  btnLeft.addEventListener(`click`, prevSlide);
+
+  document.addEventListener(`keydown`, function (e) {
+    e.key === `ArrowRight` && nextSlide();
+    e.key === `ArrowLeft` && prevSlide();
+  });
+
+  dotContainer.addEventListener(`click`, function (e) {
+    if (e.target.classList.contains(`dots__dot`)) {
+      const slide = e.target.dataset.slide;
+      currSlide = +slide;
+      gotoSlide(currSlide);
+    }
+  });
+};
+slider();
+
 /*
 // Sticky Navigation
 const initialCoords = section1.getBoundingClientRect();
@@ -442,8 +472,6 @@ const observer = new IntersectionObserver(observerCallback, obsOptions);
 observer.observe(``)
 */
 // console.log(observer);
-
-
 
 // const addNumber = num =>{
 //   const strArr = `${num}`.split('');
