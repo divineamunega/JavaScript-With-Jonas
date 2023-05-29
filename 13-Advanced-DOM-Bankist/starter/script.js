@@ -363,7 +363,7 @@ btnScrollTo.addEventListener(`click`, function (e) {
   //   left: s1coords.left + window.scrollX,
   //   top: s1coords.top + window.scrollY,
   //   behavior: `smooth`
-  // });
+  // });`
 
   section1.scrollIntoView({ behavior: `smooth` });
 });*/
