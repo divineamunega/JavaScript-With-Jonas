@@ -1,19 +1,19 @@
 'use strict';
 
-const Person  =  function (firstName, birthYear) {
-    // Instance Properties
-    this.firstName = firstName;
-    this.birthYear = birthYear;
+const Person = function (firstName, birthYear) {
+  // Instance Properties
+  this.firstName = firstName;
+  this.birthYear = birthYear;
 
-    // Never Create a method inside a constructor function
-    
-    // this.calcAge = function () {
-    //     const currentYear = new Date().getFullYear();
-    //      return currentYear -  this.birthYear;
-    // }
-} 
+  // Never Create a method inside a constructor function
 
-const jonas  = new Person(`Jonas`,1991);
+  // this.calcAge = function () {
+  //     const currentYear = new Date().getFullYear();
+  //      return currentYear -  this.birthYear;
+  // }
+};
+
+const jonas = new Person(`Jonas`, 1991);
 console.log(jonas);
 
 // When we use the (new) opearator
@@ -23,8 +23,28 @@ console.log(jonas);
 // 3. THis newly created object is linked to a prototype.
 // 4. The function automaticslly returns {};
 
-
 const matilda = new Person(`Matilda`, 2017);
-const jack = new Person(`Jack`,1975);
-console.log(matilda.calcAge());
+const jack = new Person(`Jack`, 1975);
 console.log(jonas instanceof Person);
+
+// Prototypes
+// Each and every function automatically has a property called property.
+/* Every object that is created by a certain constructor function will
+ access to all methods and properties on the constructor's prototype property. */
+
+ console.log(Person.prototype);
+Person.prototype.calcAge = function () {
+  return new Date().getFullYear() - this.birthYear;
+};
+
+console.log(jonas.calcAge());
+console.log(matilda.calcAge());
+console.log(jack.calcAge());
+
+console.log(jonas.__proto__);
+
+Person.prototype.species = `Homo Sapiens`;
+console.log(jonas.__proto__.species);
+
+console.log(jonas.hasOwnProperty(`firstName`));
+console.log(jonas.hasOwnProperty(`species`));
