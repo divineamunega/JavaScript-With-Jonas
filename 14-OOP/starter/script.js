@@ -71,3 +71,25 @@ const arr = [1,2,3,4,4,4,2,2];
  const h1 = document.querySelector(`h1`);
  console.dir(h1);
  console.dir(v => v + 1); */
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = `${speed}km/hr`;
+};
+
+const car1 = new Car(`BMW`, 120);
+
+const car2 = new Car(`Mercedes`,95);
+
+Car.prototype.accelerate = function () {
+  this.speed = parseFloat(this.speed) + 10;
+  console.log(this.speed);
+}
+
+Car.prototype.brake = function () {
+  this.speed = parseFloat(this.speed) - 5;
+  console.log(this.speed);
+}
+
+car1.accelerate();
+car1.brake();
