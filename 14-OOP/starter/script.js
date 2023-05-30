@@ -71,7 +71,7 @@ const arr = [1,2,3,4,4,4,2,2];
  const h1 = document.querySelector(`h1`);
  console.dir(h1);
  console.dir(v => v + 1); */
-
+/*
 const Car = function (make, speed) {
   this.make = make;
   this.speed = `${speed}km/hr`;
@@ -93,3 +93,39 @@ Car.prototype.brake = function () {
 
 car1.accelerate();
 car1.brake();
+*/
+// Class expression
+// const personCl = class { 
+// }
+
+/*
+class PersonCl {
+  constructor (firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  // Method will be added to the prototype property of the class PersonCL
+  calcAge  () {
+    console.log(new Date().getFullYear() - this.birthYear);
+  }
+}
+
+const jessica = new PersonCl(`Jessica`,2007);
+console.log(jessica);
+jessica.calcAge();
+
+PersonCl.prototype.greet = function() {
+  console.log(`Hey ${this.firstName}`);
+}
+ 
+
+jessica.greet();
+
+// 1. Classes are not hoisted
+// 2. Classes are firstclass citizens which means they are just a value... they can be passed into functions or returned 
+// 3. Classes are activated in strict mode
+
+const arr = [2,4];
+console.log({arr});
+*/
