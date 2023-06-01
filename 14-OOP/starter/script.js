@@ -95,7 +95,7 @@ car1.accelerate();
 car1.brake();
 */
 // Class expression
-// const personCl = class { 
+// const personCl = class {
 // }
 
 /*
@@ -160,3 +160,53 @@ account.latest = 50;
 // console.log(account.movements);*/
 
 /// Getters And Setters
+
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  // Methods in the PersonCL prototype
+  calcAge() {
+    return new Date().getFullYear() - this.birthYear;
+  }
+
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+
+  get age() {
+    return this.calcAge();
+  }
+
+  set fullName(name) {
+    console.log(name); 
+    // if()
+    name.includes(` `)
+      ? (this._fullName = name)
+      : alert(`The given Name is not a full-Name`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+}
+
+const account = {
+  owner: `Jonas`,
+  movements: [200, 530, 120, 300],
+
+  get latest() {
+    return this.movements.splice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+account.latest = 23;
+// console.log(account.latest);
+
+const me = new PersonCl(`Divine`, 2007);
+console.log(me.age);
