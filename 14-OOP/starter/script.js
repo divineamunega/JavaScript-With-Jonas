@@ -248,3 +248,38 @@ console.log(steven.__proto__ === PersonProto);
 
 const divine = Object.create(PersonProto);
 */
+
+/// Coding Challenge 2
+
+class Car{
+  constructor(make,speed) {
+    this.make = make;
+    this.speed = `${speed}km/hr`;
+  }
+
+  accelerate(){
+    this.speed = `${Number.parseFloat(this.speed) + 10}km/hr`;
+  }
+
+  brake(){
+    this.speed = `${Number.parseFloat(this.speed) - 10}km/hr`;
+  }
+
+  get speedUS(){
+    return `${Number.parseFloat(this.speed) / 1.6}mi/hr`;
+  }
+
+  set speedUS(speed) {
+    this.speed = `${speed * 1.6}km/hr`;
+  }
+
+
+
+}
+
+
+const ford = new Car(`Ford`,120);
+// ford.speedUS = 100;
+ford.accelerate();
+ford.accelerate();
+console.log(ford);
