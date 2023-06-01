@@ -100,8 +100,8 @@ car1.brake();
 
 /*
 class PersonCl {
-  constructor (firstName, birthYear) {
-    this.firstName = firstName;
+  constructor (fullName, birthYear) {
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
@@ -109,23 +109,54 @@ class PersonCl {
   calcAge  () {
     console.log(new Date().getFullYear() - this.birthYear);
   }
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  set fullName(name) {
+    console.log(name);
+    name.includes(` `) && console.log(`Hey ${this._firstName}`);
+    !name.includes(` `) && alert(`${name} is not a full name.`)
+  }
+
+
 }
 
-const jessica = new PersonCl(`Jessica`,2007);
-console.log(jessica);
-jessica.calcAge();
+const jessica = new PersonCl(`Jessica Davies`,2007);
+console.log(jessica.fullName);
 
 PersonCl.prototype.greet = function() {
   console.log(`Hey ${this.firstName}`);
 }
  
-
-jessica.greet();
+// console.log(jessica.age  );
+// jessica.greet();
 
 // 1. Classes are not hoisted
 // 2. Classes are firstclass citizens which means they are just a value... they can be passed into functions or returned 
 // 3. Classes are activated in strict mode
 
-const arr = [2,4];
-console.log({arr});
-*/
+// const arr = [2,4];
+// console.log({arr});
+
+const account = {
+  owner:`Jonas`,
+  movements:[1,2,3,4444,555,6,67,3,55],
+
+  get latest () {
+    const [arr] = this.movements.slice(-1);
+    return arr;
+  },
+
+  set latest (mov) {
+    this.movements.push(mov);
+  }
+}
+
+// console.log(account.latest);
+account.latest = 50;
+
+// console.log(account.movements);*/
+
+/// Getters And Setters
