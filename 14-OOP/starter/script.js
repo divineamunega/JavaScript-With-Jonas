@@ -225,3 +225,26 @@ Person.hey = function(){
 }
 // console.log(me.age);
 */
+
+/*
+const PersonProto = {
+  calcAge() {
+    return new Date().getFullYear() - this.birthYear;
+  },
+
+  init(name, birthYear) {
+    this.name = name;
+    this.birthYear = birthYear
+  }
+};
+
+const steven = Object.create(PersonProto);
+steven.init(`Steven`,2007);
+steven.calcAge();
+
+console.log(steven.calcAge());
+
+console.log(steven.__proto__ === PersonProto);
+
+const divine = Object.create(PersonProto);
+*/
