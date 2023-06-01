@@ -161,13 +161,19 @@ account.latest = 50;
 
 /// Getters And Setters
 
+/*
+const Person = function(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
 class PersonCl {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
-  // Methods in the PersonCL prototype
+  // Methods in the PersonCL prototype They are called static methods
   calcAge() {
     return new Date().getFullYear() - this.birthYear;
   }
@@ -191,6 +197,10 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+
+  static hey() {
+    console.log(`Hey there 👋🏼`);
+  }
 }
 
 const account = {
@@ -208,5 +218,10 @@ const account = {
 account.latest = 23;
 // console.log(account.latest);
 
-const me = new PersonCl(`Divine`, 2007);
-console.log(me.age);
+const me = new PersonCl(`Divine Amunega`, 2007);
+
+Person.hey = function(){
+  console.log(`Hey 👋🏼`);
+}
+// console.log(me.age);
+*/
