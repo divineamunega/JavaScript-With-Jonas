@@ -251,6 +251,7 @@ const divine = Object.create(PersonProto);
 
 /// Coding Challenge 2
 
+/*
 class Car{
   constructor(make,speed) {
     this.make = make;
@@ -283,3 +284,26 @@ const ford = new Car(`Ford`,120);
 ford.accelerate();
 ford.accelerate();
 console.log(ford);
+*/
+
+const Person = function (firstName, birthYear) {
+  this.birthYear = birthYear;
+  this.firstName = firstName;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(new Date().getFullYear() - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(new Person(firstName, birthYear), course);
+  this.course = course;
+};
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student(`Mike`, 2020, `Computer Science`);
+console.log(mike);
+mike.introduce();
