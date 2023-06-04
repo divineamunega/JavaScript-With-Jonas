@@ -252,6 +252,7 @@ const divine = Object.create(PersonProto);
 /// Coding Challenge 2
 
 /*
+
 class Car{
   constructor(make,speed) {
     this.make = make;
@@ -319,3 +320,57 @@ console.log(mike.__proto__ === Student.prototype);
 
 Student.prototype.constructor = Student;
 */
+
+function Car(make, speed) {
+  this.make = make;
+  this.speed = `${speed}km/hr`;
+}
+
+Car.prototype.accelerate = function () {
+  this.speed = `${Number.parseFloat(this.speed) + 10}km/hr`;
+};
+
+Car.prototype.brake = function () {
+  this.speed = `${Number.parseFloat(this.speed) - 10}km/hr`;
+};
+
+Car.prototype.speedUS = function () {
+  return `${Number.parseFloat(this.speed) / 1.6}mi/hr`;
+};
+
+Car.prototype.speedUS = function (speed) {
+  this.speed = `${speed * 1.6}km/hr`;
+};
+
+const benz = new Car(`Benz`, 120);
+benz.speedUS = 100;
+
+const ElectricCar = function (make, speed, charge) {
+  Car.call(this, make, speed);
+
+  this.charge = `${charge}%`;
+};
+// console.log(Car.prototype);
+ElectricCar.prototype = Object.create(Car.prototype);
+console.log(ElectricCar.prototype);
+ElectricCar.prototype.accelerate = function () {
+  this.speed = `${Number.parseFloat(this.speed + 20)}km/hr`;
+  this.charge = `${+this.charge.slice(0, this.charge.length - 1) - 1}%`;
+  console.log(
+    `${this.make} going at a speed of ${this.speed} at a charge of ${this.charge}`
+  );
+};
+
+ElectricCar.prototype.chargeBattery = function (val) {
+  this.charge = `${Number.parseFloat(val)}`;
+};
+
+ElectricCar.prototype.constructor = ElectricCar;
+const tesla = new ElectricCar(`Tesla`, 120, 23);
+tesla.accelerate();
+tesla.brake();
+console.log(tesla);
+console.log(tesla.__proto__ === ElectricCar.prototype);
+ElectricCar.prototype.constructor = ElectricCar;
+console.dir(Car);
+console.dir(ElectricCar);
