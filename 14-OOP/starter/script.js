@@ -286,6 +286,7 @@ ford.accelerate();
 console.log(ford);
 */
 
+/*
 const Person = function (firstName, birthYear) {
   this.birthYear = birthYear;
   this.firstName = firstName;
@@ -296,14 +297,25 @@ Person.prototype.calcAge = function () {
 };
 
 const Student = function (firstName, birthYear, course) {
-  Person.call(new Person(firstName, birthYear), course);
+  Person.call(this, firstName,birthYear);
   this.course = course;
 };
+
+// Linking Prototypes
+Student.prototype = Object.create(Person.prototype)
 
 Student.prototype.introduce = function () {
   console.log(`My name is ${this.firstName} and I study ${this.course}`);
 };
 
 const mike = new Student(`Mike`, 2020, `Computer Science`);
-console.log(mike);
-mike.introduce();
+// console.dir(Person.__proto__);
+console.dir(Student.prototype);
+console.dir(Person.prototype);
+
+mike.calcAge();
+
+console.log(mike.__proto__ === Student.prototype);
+
+Student.prototype.constructor = Student;
+*/
