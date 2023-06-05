@@ -433,3 +433,43 @@ divi.init(`Divine`,2007,'Computer Science');
 divi.calcAge()
 console.log(divi);
 */
+
+class Account {
+  constructor(owner, currency , pin) {
+    this.owner = owner;
+    this.pin = pin;
+    this.currency = currency;
+
+    this.movements = [];
+    this.local = navigator.language;
+
+    console.log(`Thanks for Opening An Account ${this.owner}`);
+  }
+
+  deposit(val) {
+    this.movements.push(val);
+  }
+
+  withdrawal(val) {
+    this.deposit(-val);
+  }
+
+
+  approveLoan(val) {
+    return true;
+  }
+
+  requestLoan (val) {
+    if(this.approveLoan(val)){
+      this.deposit(val);
+      console.log(`Loan Approved`);
+    }
+  }
+}
+
+const acct1 = new Account(`Jonas`, `EUR`, 1111);
+acct1.deposit(250);
+acct1.withdrawal(140);
+acct1.requestLoan(1000);
+
+console.log(acct1);
