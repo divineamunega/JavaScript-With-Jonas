@@ -287,7 +287,7 @@ ford.accelerate();
 console.log(ford);
 */
 
-/*
+
 const Person = function (firstName, birthYear) {
   this.birthYear = birthYear;
   this.firstName = firstName;
@@ -311,20 +311,22 @@ Student.prototype.introduce = function () {
 
 const mike = new Student(`Mike`, 2020, `Computer Science`);
 // console.dir(Person.__proto__);
-console.dir(Student.prototype);
-console.dir(Person.prototype);
+
+console.log(mike);
 
 mike.calcAge();
 
 console.log(mike.__proto__ === Student.prototype);
 
 Student.prototype.constructor = Student;
-*/
+
+
 
 function Car(make, speed) {
   this.make = make;
   this.speed = `${speed}km/hr`;
 }
+
 
 Car.prototype.accelerate = function () {
   this.speed = `${Number.parseFloat(this.speed) + 10}km/hr`;
@@ -351,10 +353,13 @@ const ElectricCar = function (make, speed, charge) {
   this.charge = `${charge}%`;
 };
 // console.log(Car.prototype);
+
 ElectricCar.prototype = Object.create(Car.prototype);
-console.log(ElectricCar.prototype);
+
+
 ElectricCar.prototype.accelerate = function () {
   this.speed = `${Number.parseFloat(this.speed + 20)}km/hr`;
+  
   this.charge = `${+this.charge.slice(0, this.charge.length - 1) - 1}%`;
   console.log(
     `${this.make} going at a speed of ${this.speed} at a charge of ${this.charge}`
@@ -370,7 +375,28 @@ const tesla = new ElectricCar(`Tesla`, 120, 23);
 tesla.accelerate();
 tesla.brake();
 console.log(tesla);
-console.log(tesla.__proto__ === ElectricCar.prototype);
+// console.log(tesla.__proto__ === ElectricCar.prototype);
 ElectricCar.prototype.constructor = ElectricCar;
-console.dir(Car);
-console.dir(ElectricCar);
+// console.dir(Car);
+// console.dir(ElectricCar);
+
+
+/////////////////////////////////
+// Inhertance Between Classes
+
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+}
+
+class StudentCl extends PersonCl {
+  constructor(firstName, lastName, courses) {
+    super(firstName, lastName);
+    this.courses = courses;
+  }
+}
+
+const divine = new StudentCl(`Divine`, 2007, `Computer Science`);
+console.log(divine);
