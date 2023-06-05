@@ -287,7 +287,7 @@ ford.accelerate();
 console.log(ford);
 */
 
-
+/*
 const Person = function (firstName, birthYear) {
   this.birthYear = birthYear;
   this.firstName = firstName;
@@ -400,3 +400,4 @@ class StudentCl extends PersonCl {
 
 const divine = new StudentCl(`Divine`, 2007, `Computer Science`);
 console.log(divine);
+*/
