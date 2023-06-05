@@ -401,3 +401,35 @@ class StudentCl extends PersonCl {
 const divine = new StudentCl(`Divine`, 2007, `Computer Science`);
 console.log(divine);
 */
+
+/*
+const PersonProto = {
+  calcAge() {
+    console.log(`${2037 - this.birthYear}`);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+}
+
+const divine = Object.create(PersonProto);
+divine.init(`Divine`, 2007);
+
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function(firstName,birthYear,course)  {
+  PersonProto.init.call(this,firstName,birthYear);
+
+  this.course = course;
+}
+StudentProto.introduce = function () {
+  console.log(`Hello, I'm ${this.firstName} and i'm currently studying ${this.course}`);
+}
+
+StudentProto.isBoy = true;
+const divi = Object.create(StudentProto);
+divi.init(`Divine`,2007,'Computer Science');
+divi.calcAge()
+console.log(divi);
+*/
