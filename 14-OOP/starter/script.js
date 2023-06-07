@@ -434,24 +434,20 @@ divi.calcAge()
 console.log(divi);
 */
 
-
 // Public Fields
 // Private Fields
 // Public Methods
 // Private Methods
 
 class Account {
-
   // 1) Public Fields
   local = navigator.language;
-  
-  
+
   //2) Private Fields
   #movements = [];
   #pin;
 
-
-  constructor(owner, currency , pin) {
+  constructor(owner, currency, pin) {
     this.owner = owner;
     this.#pin = pin;
     this.currency = currency;
@@ -462,38 +458,35 @@ class Account {
     console.log(`Thanks for Opening An Account ${this.owner}`);
   }
 
-
-// Public Methods
-  get movements() {
+  // Public Methods
+  getmovements() {
     return this.#movements;
   }
 
   // Public Interface
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdrawal(val) {
     this.deposit(-val);
+    return this;
   }
 
-
-  
-
-  requestLoan (val) {
-    if(this.#approveLoan(val)){
+  requestLoan(val) {
+    if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan Approved`);
     }
+    return this;
   }
-
 
   // Private Methods
 
   #approveLoan(val) {
     return true;
   }
-  
 }
 
 const acct1 = new Account(`Jonas`, `EUR`, 1111);
@@ -502,3 +495,15 @@ acct1.withdrawal(140);
 acct1.requestLoan(1000);
 
 console.log(acct1);
+
+// Chaining
+acct1
+  .deposit(300)
+  .deposit(500)
+  .withdrawal(35)
+  .requestLoan(25_000)
+  .withdrawal(4000);
+
+console.log(acct1.getmovements());
+
+console.dir(typeof Account);
