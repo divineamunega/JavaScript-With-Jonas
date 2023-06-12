@@ -1,6 +1,6 @@
 'use strict';
 
-// prettier-ignore
+
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const form = document.querySelector('.form');
@@ -18,7 +18,19 @@ navigator.geolocation.getCurrentPosition(function(pos) {
     console.log(
       `https://www.google.com/maps/@${latitude},${longitude},9z?entry=ttu`
     );
-    console.log(pos);
+
+    const map = L.map('map').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    L.marker([51.5, -0.09])
+      .addTo(map)
+      .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+      .openPopup();
 }, function(){
     alert("Could Not get your location")
 })
+divi
