@@ -89,6 +89,8 @@ class App {
     form.addEventListener(`submit`, this.#newWorkout.bind(this));
 
     inputType.addEventListener(`change`, this.#toggleElevationField);
+
+    containerWorkouts.addEventListener(`click`, this.#moveToPopup.bind(this))
   }
 
   #getPosition() {
@@ -196,7 +198,9 @@ class App {
           className: `${workout.type}-popup`,
         })
       )
-      .setPopupContent(`${workout.distance}`)
+      .setPopupContent(
+        `${workout.type === `running` ? `🏃🏼‍♂️` : `🚴🏼`}${workout.description}`
+      )
       .openPopup();
   }
 
@@ -219,7 +223,7 @@ class App {
       </div>
       `;
 
-    if ((workout.type === `running`)) {
+    if (workout.type === `running`) {
       html += `<div class="workout__details">
         <span class="workout__icon">⚡️</span>
         <span class="workout__value">${workout.pace.toFixed(1)}</span>
@@ -233,7 +237,7 @@ class App {
   </li>`;
     }
 
-    if ((workout.type === `cycling`)) {
+    if (workout.type === `cycling`) {
       html += `
       <div class="workout__details">
         <span class="workout__icon">⚡️</span>
@@ -248,7 +252,18 @@ class App {
   </li>`;
     }
 
-    form.insertAdjacentHTML(`afterend`,html)
+    form.insertAdjacentHTML(`afterend`, html);
+  }
+
+  #moveToPopup(e) {
+    const worloutEl = e.target.closest(`.workout`);
+    if (!worloutEl) return;
+
+    const workout = this.#workouts.find(
+      work => work.id === worloutEl.dataset.id
+    );
+
+      this.#map.setView(workout.coords,11);
   }
 }
 const app = new App();
