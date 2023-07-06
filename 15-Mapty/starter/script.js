@@ -7,10 +7,12 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+// const workoutDelete = document.querySelector(`.deleteBtn`);
+// console.log(workoutDelete);
 
 class Workout {
   date = new Date();
-  id = new Date().getTime() + ``;
+  id = new Date().getTime() + `-` + Math.random();
   clicks = 0;
   constructor(coords, distance, duration) {
     this.coords = coords; // [lat, lng]
@@ -100,6 +102,7 @@ class App {
     form.addEventListener(`submit`, this.#newWorkout.bind(this));
     inputType.addEventListener(`change`, this.#toggleElevationField);
     containerWorkouts.addEventListener(`click`, this.#moveToPopup.bind(this));
+    containerWorkouts.addEventListener(`click`, this.#deleteWorkout.bind(this));
   }
 
   #getPosition() {
@@ -225,6 +228,7 @@ class App {
   #renderWorkout(workout) {
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
+    <button class="deleteBtn" data-id="${workout.id}">🗑️</button>
       <h2 class="workout__title">${workout.description}</h2>
       <div class="workout__details">
        <span class="workout__icon">${
@@ -324,7 +328,21 @@ class App {
 
     // this.#workouts = JSON.parse(data);
   }
-  
+
+  #deleteWorkout(e) {
+    const deleteBtn = e.target.closest(`.deleteBtn`);
+    if(!deleteBtn) return;
+    console.log(deleteBtn);
+
+
+    const workoutIndex = this.#workouts.findIndex(work => work.id === deleteBtn.dataset.id);
+    const deletedWorkout = this.#workouts.splice(workoutIndex, 1);
+    const deletedEl = deleteBtn.closest(`.workout`)
+    deletedEl.remove();
+    location.reload();
+    this.#setLocalStorage()
+  }
+
   reset() {
     localStorage.removeItem(`workouts`);
     location.reload();
