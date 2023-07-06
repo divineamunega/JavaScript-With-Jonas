@@ -32,6 +32,7 @@
     />
 
     <script defer src="script.js"></script>
+    <script defer src="animation.js"></script>
     <title>mapty // Map your workouts</title>
   </head>
   <body>
@@ -128,9 +129,12 @@
 
       <div class="btn-box">
         <div class="deleteAll">
-          <button class="deleteAll--btn"><span class="material-symbols-outlined">
-            delete_forever
-            </span> <span class="question--deleteAll">Delete All</span></button>
+          <button class="deleteAll--btn"><span class="material-symbols-outlined icon">
+            delete_forever 
+            </span> <span class="question--deleteAll hidden" data-question="1">Delete All</span>
+          <div class="question__sure hidden" data-question="2">Are You Sure</div>
+          <div class="deleted hidden"data-question="3" class="hidden">Deleted</div>
+          </button>
         </div>
 
         <div class="sort">
