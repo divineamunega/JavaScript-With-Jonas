@@ -7,7 +7,13 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
-const deleteAllBtn = document.querySelector(`.deleteAll`);
+// const deleteAllBtn = document.querySelector(`.deleteAll`);
+
+const deleteAll = document.querySelector(`.deleteAll--btn`);
+const icon = document.querySelector(`.icon`);
+const questionDeleteAll = document.querySelector(`.question--deleteAll`);
+const questionSure = document.querySelector(`.question__sure`);
+const deleted = document.querySelector(`.deleted`);
 // const workoutDelete = document.querySelector(`.deleteBtn`);
 // console.log(workoutDelete);
 
@@ -92,6 +98,7 @@ class App {
   #mapEvent;
   #workouts = [];
   #mapZoom = 13;
+  deleteCount = 0;
 
   constructor() {
     // Get Users Position
@@ -104,6 +111,10 @@ class App {
     inputType.addEventListener(`change`, this.#toggleElevationField);
     containerWorkouts.addEventListener(`click`, this.#moveToPopup.bind(this));
     containerWorkouts.addEventListener(`click`, this.#deleteWorkout.bind(this));
+    deleteAll.addEventListener(
+      `mouseenter`,
+      this.#deleteAllAnimations.bind(this)
+    );
   }
 
   #getPosition() {
@@ -332,16 +343,17 @@ class App {
 
   #deleteWorkout(e) {
     const deleteBtn = e.target.closest(`.deleteBtn`);
-    if(!deleteBtn) return;
+    if (!deleteBtn) return;
     console.log(deleteBtn);
 
-
-    const workoutIndex = this.#workouts.findIndex(work => work.id === deleteBtn.dataset.id);
+    const workoutIndex = this.#workouts.findIndex(
+      work => work.id === deleteBtn.dataset.id
+    );
     const deletedWorkout = this.#workouts.splice(workoutIndex, 1);
-    const deletedEl = deleteBtn.closest(`.workout`)
+    const deletedEl = deleteBtn.closest(`.workout`);
     deletedEl.remove();
     location.reload();
-    this.#setLocalStorage()
+    this.#setLocalStorage();
   }
 
   reset() {
@@ -349,8 +361,109 @@ class App {
     location.reload();
   }
 
-  #deleteAll(){
-    console.log(`Www`);
+  #deleteAllAnimations(e) {
+    const doneAll = function (e) {
+      // console.log(controller);
+      questionSure.classList.add(`hidden`);
+      deleted.classList.remove(`hidden`);
+      e.target.classList.add(`deleted`);
+      icon.textContent = `done_all`;
+      this.deleteCount = 3;
+      console.log(this.deleteCount);
+      this.#deleteAll()
+    };
+
+    if (this.deleteCount === 0) {
+      this.deleteCount = 1;
+      e.target.classList.add(`question-1`);
+      console.log(e.target);
+      questionDeleteAll.classList.remove(`hidden`);
+      // console.log(count);
+      // const wow = removeEventListener(`mouseleave`, e.target);
+      // console.log(wow);
+
+      e.target.addEventListener(
+        `click`,
+        function () {
+          console.log(this.deleteCount);
+          if (this.deleteCount === 1) {
+            // console.log(count);
+            questionDeleteAll.classList.add(`hidden`);
+            questionSure.classList.remove(`hidden`);
+            e.target.classList.add(`question-2`);
+            icon.textContent = `question_mark`;
+            this.deleteCount = 2;
+            e.target.removeEventListener(`click`, doneAll.bind(this));
+            // e.target.removeEventListener("click")
+            if (this.deleteCount === 2) {
+              e.target.addEventListener(`click`, doneAll.bind(this));
+            }
+            e.target.addEventListener(
+              'mouseleave',
+              function () {
+                // console.log(count);
+                if (this.deleteCount === 3) {
+                  this.deleteCount = 0;
+                  // console.log(count);
+                  icon.textContent = `delete_forever`;
+                  deleted.classList.add(`hidden`);
+                  e.target.classList.remove(
+                    `deleted`,
+                    `question-2`,
+                    `question-1`
+                  );
+                  // removeEventListener("mouseleave",e.target);
+                }
+              }.bind(this)
+            );
+          }
+        }.bind(this)
+      );
+    }
+  }
+
+  #deleteAll() {
+    this.#workouts = [];
+    this.#setLocalStorage();
+
+//     containerWorkouts.innerHTML = `<form class="form hidden">
+//     <div class="form__row">
+//       <label class="form__label">Type</label>
+//       <select class="form__input form__input--type">
+//         <option value="running">Running</option>
+//         <option value="cycling">Cycling</option>
+//       </select>
+//     </div>
+//     <div class="form__row">
+//       <label class="form__label">Distance</label>
+//       <input class="form__input form__input--distance" placeholder="km" />
+//     </div>
+//     <div class="form__row">
+//       <label class="form__label">Duration</label>
+//       <input
+//         class="form__input form__input--duration"
+//         placeholder="min"
+//       />
+//     </div>
+//     <div class="form__row">
+//       <label class="form__label">Cadence</label>
+//       <input
+//         class="form__input form__input--cadence"
+//         placeholder="step/min"
+//       />
+//     </div>
+//     <div class="form__row form__row--hidden">
+//       <label class="form__label">Elev Gain</label>
+//       <input
+//         class="form__input form__input--elevation"
+//         placeholder="meters"
+//       />
+//     </div>
+//     <button class="form__btn">OK</button>
+//   </form>
+// `;
+
+    location.reload()
   }
 }
 const app = new App();
